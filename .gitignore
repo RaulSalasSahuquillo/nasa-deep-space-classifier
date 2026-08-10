@@ -1,0 +1,3 @@
+.venv
+/training/data
+/training/trained_net.pth
