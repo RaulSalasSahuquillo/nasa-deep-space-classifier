@@ -31,8 +31,8 @@ for folder_path, class_name in sources:
 
 if not data:
     raise ValueError(
-        "No se encontraron imágenes en training/data/. "
-        "Asegúrate de haber puesto imágenes (.jpg/.png) en las subcarpetas de training/data/."
+        "No images found in training/data/. "
+        "Make sure you have placed images (.jpg/.png) in the subfolders of training/data/."
     )
 
 df = pd.DataFrame(data)
@@ -44,4 +44,4 @@ train_df, test_df = train_test_split(df, test_size=0.2, random_state=42, stratif
 train_df.to_csv('cosmos_train.csv', index=False)
 test_df.to_csv('cosmos_test.csv', index=False)
 
-print("¡Archivos cosmos_train.csv y cosmos_test.csv generados con éxito!")
+print("cosmos_train.csv y cosmos_test.csv generated successfully!")
