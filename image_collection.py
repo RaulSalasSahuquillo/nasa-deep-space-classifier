@@ -2,168 +2,202 @@
 """
 image_collection.py
 --------------------
-Downloads public "cosmos" images from MAST (Mikulski Archive for Space
-Telescopes) using the astroquery library.
-
-Program flow:
-    1. On startup, it looks up the 10 most recent public images and
-       downloads any that aren't already in the project's "images" folder.
-    2. After that initial download, it runs ONE extra check for any new
-       image that may have appeared in the meantime, and downloads it.
-       (No loop, no scheduling — it runs once and exits.)
+Downloads 100 high-resolution astronomical images with well-defined targets
+from both NASA APOD and MAST into separate directories with dedicated JSON registries.
 
 Requirements:
-    pip install astroquery astropy
-
-Usage:
-    python image_collection.py
+    pip install requests astroquery astropy python-dotenv
 """
 
 import json
+import os
+import requests
 from pathlib import Path
+from dotenv import load_dotenv
 from astropy.time import Time
 from astroquery.mast import Observations
 
+# Load environment variables from .env file
+load_dotenv()
+
 # Configuration
-IMAGES_FOLDER = Path("./images")                        # destination folder
-REGISTRY_FILE = IMAGES_FOLDER / "downloaded.json"       # tracks what's already downloaded
-NUM_IMAGES = 10                                         # how many recent images to track
-MISSIONS = ["JWST", "HST"]                              # missions to query
-IMAGE_EXTENSIONS = ["jpg", "png"]                       # preview images only, not raw FITS
+BASE_IMAGES_FOLDER = Path("./images")
+NASA_FOLDER = BASE_IMAGES_FOLDER / "nasaDownloads"
+MAST_FOLDER = BASE_IMAGES_FOLDER / "mastDownloads"
 
-# Searching the ENTIRE archive (millions of HST/JWST observations) and
-# sorting locally is very slow. Instead we search within a recent time
-# window, and widen it only if that's not enough to find NUM_IMAGES.
-INITIAL_WINDOW_DAYS = 30
-MAX_WINDOW_DAYS = 3650  # don't search back more than ~10 years
+NASA_REGISTRY_FILE = NASA_FOLDER / "downloaded.json"
+MAST_REGISTRY_FILE = MAST_FOLDER / "downloaded.json"
+
+TARGET_PER_SOURCE = 100
+
+APOD_API_URL = "https://api.nasa.gov/planetary/apod"
+APOD_API_KEY = os.getenv("NASA_API_KEY", "DEMO_KEY")
+
+VALID_KEYWORDS = [
+    "galaxy", "nebula", "planet", "jupiter", "saturn", "mars",
+    "cluster", "supernova", "messier", "ngc", "star", "hubble", "webb"
+]
 
 
-# Local registry of already-downloaded files so we don't re-download
-def load_registry() -> set:
-    if REGISTRY_FILE.exists():
-        with open(REGISTRY_FILE, "r") as f:
+def load_registry(filepath: Path) -> set:
+    if filepath.exists():
+        with open(filepath, "r") as f:
             return set(json.load(f))
     return set()
 
 
-def save_registry(registry: set) -> None:
-    IMAGES_FOLDER.mkdir(parents=True, exist_ok=True)
-    with open(REGISTRY_FILE, "w") as f:
+def save_registry(registry: set, filepath: Path, folder: Path) -> None:
+    folder.mkdir(parents=True, exist_ok=True)
+    with open(filepath, "w") as f:
         json.dump(sorted(registry), f, indent=2)
 
 
-# MAST queries
-def find_recent_images(n: int):
-    """Returns the n most recent, public 'image' observations.
+def is_relevant_object(name: str) -> bool:
+    name_lower = name.lower()
+    return any(keyword in name_lower for keyword in VALID_KEYWORDS)
 
-    Instead of pulling the entire archive, this searches within a recent
-    time window (t_min = observation start time, in MJD) and widens that
-    window only if it doesn't turn up enough results. This keeps queries
-    fast (seconds) instead of scanning the whole catalog.
-    """
-    now_mjd = Time.now().mjd
-    window_days = INITIAL_WINDOW_DAYS
-    obs = []
 
-    while True:
-        start_mjd = now_mjd - window_days
-        print(f"  Searching the last {window_days} day(s)...")
+# NASA APOD API -> 100 Images
+def fetch_apod_images(target_count: int) -> int:
+    print(f"Fetching {target_count} High-Res Images from NASA APOD")
+    registry = load_registry(NASA_REGISTRY_FILE)
+    NASA_FOLDER.mkdir(parents=True, exist_ok=True)
+    
+    downloaded_in_session = 0
 
-        obs = Observations.query_criteria(
-            obs_collection=MISSIONS,
-            dataproduct_type="image",
-            dataRights="PUBLIC",
-            t_min=[start_mjd, now_mjd],
-        )
+    while len(registry) < target_count:
+        needed = target_count - len(registry)
+        print(f"  [APOD Progress: {len(registry)}/{target_count}] Requesting batch from NASA...")
+        
+        params = {"api_key": APOD_API_KEY, "count": min(needed * 2, 100)}
 
-        if len(obs) >= n or window_days >= MAX_WINDOW_DAYS:
+        try:
+            response = requests.get(APOD_API_URL, params=params, timeout=20)
+            if response.status_code != 200:
+                print(f"  Error accessing APOD API: HTTP {response.status_code}")
+                break
+
+            data = response.json()
+            new_added_in_batch = 0
+
+            for item in data:
+                if len(registry) >= target_count:
+                    break
+
+                if item.get("media_type") != "image":
+                    continue
+
+                title = item.get("title", "")
+                url = item.get("hdurl") or item.get("url")
+                if not url:
+                    continue
+
+                filename = url.split("/")[-1]
+                if filename in registry or not is_relevant_object(title):
+                    continue
+
+                print(f"  Downloading: '{title}'...")
+                img_data = requests.get(url, timeout=30).content
+                filepath = NASA_FOLDER / filename
+
+                with open(filepath, "wb") as f:
+                    f.write(img_data)
+
+                registry.add(filename)
+                save_registry(registry, NASA_REGISTRY_FILE, NASA_FOLDER)
+                downloaded_in_session += 1
+                new_added_in_batch += 1
+
+            if new_added_in_batch == 0:
+                print("  No new valid images in this batch, requesting another...")
+
+        except Exception as e:
+            print(f"  Error querying APOD: {e}")
             break
 
-        window_days *= 4  # widen the search and try again
-
-    if len(obs) == 0:
-        return obs
-
-    # t_obs_release = date (in MJD) the data was made public.
-    # Sort from most recent to oldest.
-    obs.sort("t_obs_release", reverse=True)
-    return obs[:n]
+    print(f"  [APOD Complete] Saved {downloaded_in_session} new images to '{NASA_FOLDER}'.\n")
+    return downloaded_in_session
 
 
-def get_downloadable_products(obs):
-    """From those observations' products, keep only public image
-    previews (jpg/png).
+# FAST MAST Archive -> 100 Images
+def fetch_mast_images(target_count: int) -> int:
+    print(f"Fetching {target_count} High-Res Images from MAST")
+    registry = load_registry(MAST_REGISTRY_FILE)
+    MAST_FOLDER.mkdir(parents=True, exist_ok=True)
 
-    Note: preview images (jpg/png) are typically tagged productType
-    "PREVIEW" or "THUMBNAIL" in MAST, not "SCIENCE" (SCIENCE is for the
-    raw/calibrated FITS data). So we filter only by extension and
-    public data rights, without restricting productType.
-    """
-    if len(obs) == 0:
-        return None
+    downloaded_in_session = 0
+    now_mjd = Time.now().mjd
+    
+    # Restringir la búsqueda a los últimos 365 días acelera la consulta 100x
+    start_mjd = now_mjd - 365
 
-    products = Observations.get_product_list(obs)
-    filtered_products = Observations.filter_products(
-        products,
-        extension=IMAGE_EXTENSIONS,
-        dataRights="PUBLIC",
-    )
-    return filtered_products
-
-
-def download_new(products, registry: set) -> int:
-    """Downloads only the products whose filename isn't already in the
-    registry. Returns how many were downloaded."""
-    if products is None or len(products) == 0:
-        return 0
-
-    new_count = 0
-    for row in products:
-        filename = row["productFilename"]
-        if filename in registry:
-            continue  # already have it
-
-        Observations.download_products(
-            products[products["productFilename"] == filename],
-            download_dir=str(IMAGES_FOLDER),
+    try:
+        print("  Fast-querying MAST science catalog (HST)...")
+        obs = Observations.query_criteria(
+            obs_collection="HST",
+            dataproduct_type="image",
+            intentType="science",
+            dataRights="PUBLIC",
+            t_min=[start_mjd, now_mjd]
         )
-        registry.add(filename)
-        new_count += 1
 
-    return new_count
+        if len(obs) == 0:
+            print("  No recent observations found.")
+            return 0
+
+        obs.sort("t_obs_release", reverse=True)
+        
+        # Procesamos en lotes pequeños de 15 observaciones para que empiece a descargar al instante
+        batch_size = 15
+        for i in range(0, len(obs), batch_size):
+            if len(registry) >= target_count:
+                break
+
+            batch_obs = obs[i:i + batch_size]
+            products = Observations.get_product_list(batch_obs)
+            filtered = Observations.filter_products(
+                products,
+                extension=["jpg", "png"],
+                dataRights="PUBLIC"
+            )
+
+            for row in filtered:
+                if len(registry) >= target_count:
+                    break
+
+                filename = row["productFilename"]
+                if filename in registry or "thumb" in filename.lower() or "mini" in filename.lower():
+                    continue
+
+                print(f"  [MAST {len(registry)}/{target_count}] Downloading: {filename}...")
+                Observations.download_products(
+                    filtered[filtered["productFilename"] == filename],
+                    download_dir=str(MAST_FOLDER),
+                )
+
+                registry.add(filename)
+                save_registry(registry, MAST_REGISTRY_FILE, MAST_FOLDER)
+                downloaded_in_session += 1
+
+        print(f"  [MAST Complete] Saved {downloaded_in_session} new images to '{MAST_FOLDER}'.\n")
+        return downloaded_in_session
+
+    except Exception as e:
+        print(f"  Error querying MAST: {e}\n")
+        return downloaded_in_session
+
 
 
 def main():
-    registry = load_registry()
+    print(f"Starting execution. Goal: {TARGET_PER_SOURCE} images per source.\n")
 
-    # Initial download of the N most recent public images
-    print(f"Looking up the {NUM_IMAGES} most recent public images on MAST...")
-    initial_obs = find_recent_images(NUM_IMAGES)
+    # Fetch 100 from NASA APOD
+    fetch_apod_images(TARGET_PER_SOURCE)
 
-    if len(initial_obs) == 0:
-        print("No observations found. Check your connection or the MISSIONS filter.")
-        return
+    # Fetch 100 from MAST
+    fetch_mast_images(TARGET_PER_SOURCE)
 
-    products = get_downloadable_products(initial_obs)
-    if products is not None:
-        print(f"  Found {len(initial_obs)} observation(s), {len(products)} downloadable image file(s).")
-    downloaded = download_new(products, registry)
-    save_registry(registry)
-    print(f"Initial download complete: {downloaded} new image(s) saved to '{IMAGES_FOLDER}'.")
-
-    # One-time check for new images
-    print("\nChecking once for any new image since the initial download...")
-    current_obs = find_recent_images(NUM_IMAGES)
-    current_products = get_downloadable_products(current_obs)
-    extra_downloaded = download_new(current_products, registry)
-    save_registry(registry)
-
-    if extra_downloaded > 0:
-        print(f"Found and downloaded {extra_downloaded} new image(s).")
-    else:
-        print("No new images found.")
-
-    print("\nDone. The program finished.")
+    print("All Downloads Completed Successfully")
 
 
 if __name__ == "__main__":
