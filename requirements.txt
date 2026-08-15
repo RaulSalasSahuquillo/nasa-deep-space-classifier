@@ -1,0 +1,22 @@
+# Core Deep Learning & Computer Vision
+torch>=2.0.0
+torchvision>=0.15.0
+torchaudio>=2.0.0
+Pillow>=9.5.0
+
+# Scientific Computing & Data Processing
+numpy>=1.24.0
+pandas>=2.0.0
+scikit-learn>=1.2.0
+matplotlib>=3.7.0
+
+# Astronomy Data & NASA/MAST APIs
+requests>=2.28.0
+astropy>=5.0.0
+astroquery>=0.4.6
+python-dotenv>=1.0.0
+
+# Web Dashboard & Interactive Analysis
+flask>=2.3.0
+jupyter>=1.0.0
+ipykernel>=6.20.0

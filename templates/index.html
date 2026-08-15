@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Image Classifications by Category</title>
+</head>
+<body>
+    <h1>Image Classifications by Category</h1>
+
+    {% if error %}
+        <p><strong>Error:</strong> {{ error }}</p>
+    {% else %}
+        <p>Total records: {{ total_count }}</p>
+
+        
+        <h3>Categories:</h3>
+        <ul>
+            {% for category, items in grouped_data.items() %}
+            <li>
+                <a href="#category-{{ category }}">{{ category|capitalize }}</a> ({{ items|length }} images)
+            </li>
+            {% endfor %}
+        </ul>
+
+        <hr>
+
+        <!-- Separate Table for Each Category -->
+        {% for category, items in grouped_data.items() %}
+            <h2 id="category-{{ category }}">{{ category|capitalize }} ({{ items|length }})</h2>
+
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Filename</th>
+                        <th>Source Directory</th>
+                        <th>Destination Path</th>
+                        <th>Timestamp</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in items %}
+                    <tr>
+                        <td>{{ row['id'] }}</td>
+                        <td>{{ row['filename'] }}</td>
+                        <td>{{ row['source_directory'] }}</td>
+                        <td>{{ row['destination_path'] }}</td>
+                        <td>{{ row['timestamp'] }}</td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="5">No records in this category.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <br>
+        {% else %}
+            <p>No classified data available.</p>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>
