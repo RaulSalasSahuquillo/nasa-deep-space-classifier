@@ -336,4 +336,8 @@ This project is licensed under the **Creative Commons Attribution-NonCommercial-
   <img src="readme_assets/divider.svg" width="100%" alt="Footer Divider" />
 </p>
 
+---
+
+<br>
+
 <small>Special thanks to [ShrezesUverse](https://github.com/ShrezesUverse) for introducing me to the .svg files found in readme_assets, which have made this readme much more visual than it was before.</small>
