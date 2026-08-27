@@ -90,7 +90,7 @@ The deep space observation model categorizes imagery into five distinct astrophy
 | Rail | Module | Architecture & Tools | Key Features |
 | :---: | :--- | :--- | :--- |
 | <img src="readme_assets/rel-29-01.svg" width="36px" alt="Node" /> | **[Image Harvester](src/data_collection/image_collection.py)**<br><br>![](https://img.shields.io/badge/Python-3.12-3776AB?style=flat-square&logo=python&logoColor=white) ![](https://img.shields.io/badge/NASA-APOD%20API-E03C31?style=flat-square) ![](https://img.shields.io/badge/MAST-HST%20Archive-005EA2?style=flat-square) | **Astroquery & Requests**<br>Endpoints: NASA APOD, MAST HST Science Catalog | Automated batch downloader with keyword filtering, fast MJD window queries, deduplication registries, and high-resolution asset acquisition. |
-| <img src="readme_assets/rel-30-30.svg" width="36px" alt="Node" /> | **[Dataset & Model Training](training/network_training.ipynb)**<br><br>![](https://img.shields.io/badge/PyTorch-2.x-EE4C2C?style=flat-square&logo=pytorch&logoColor=white) ![](https://img.shields.io/badge/ResNet--34-Backbone-blueviolet?style=flat-square) ![](https://img.shields.io/badge/CUDA-Mixed%20Precision-76B900?style=flat-square&logo=nvidia) | **ResNet-34 Transfer Learning**<br>Optimizer: `Adam` (lr=1e-4), Loss: `CrossEntropy` | Custom PyTorch `Dataset` with geometric augmentations (random flips, 180° rotations, normalization), AMP (`autocast` / `GradScaler`), and test evaluation. |
+| <img src="readme_assets/rel-30-30.svg" width="36px" alt="Node" /> | **[Dataset & Model Training](training/network_training.ipynb)**<br><br>![](https://img.shields.io/badge/PyTorch-2.x-EE4C2C?style=flat-square&logo=pytorch&logoColor=white) ![](https://img.shields.io/badge/Matplotlib-Plots-11557c?style=flat-square) ![](https://img.shields.io/badge/ResNet--34-Backbone-blueviolet?style=flat-square) ![](https://img.shields.io/badge/CUDA-Mixed%20Precision-76B900?style=flat-square&logo=nvidia) | **ResNet-34 & Matplotlib Analytics**<br>Optimizer: `Adam` (lr=1e-4), Loss: `CrossEntropy` | Custom PyTorch `Dataset` with geometric augmentations (flips, rotations, normalization), AMP acceleration, and automated Matplotlib learning curves & confusion matrix plots. |
 | <img src="readme_assets/rel-31-00.svg" width="36px" alt="Node" /> | **[Classifier & Auto-Sorter](network_sorting/image_classifier.ipynb)**<br><br>![](https://img.shields.io/badge/TorchVision-Inference-orange?style=flat-square) ![](https://img.shields.io/badge/SQLite-3-003B57?style=flat-square&logo=sqlite&logoColor=white) | **Inference Engine & SQLite Logger**<br>DB: `network_sorting/classified_images.db` | Scans raw image directories, runs batch inference, automatically moves files to class-specific folders, and logs full audit metadata to SQLite. |
 | <img src="readme_assets/rel-33-00.svg" width="36px" alt="Node" /> | **[Gemini AI Validator](src/validator/gemini_validator.py)**<br><br>![](https://img.shields.io/badge/Google-Gemini%20Flash-4285F4?style=flat-square&logo=google) ![](https://img.shields.io/badge/Multimodal-Auditor-34A853?style=flat-square) | **Google GenAI SDK**<br>Model: `gemini-2.5-flash` | Automated multimodal auditor that evaluates neural classifications image-by-image, distinguishes CCD noise/cosmic rays from real objects, and prints real-time terminal reports. |
 | <img src="readme_assets/rel-34-10.svg" width="36px" alt="Node" /> | **[Classification Viewer](src/viewer/classification_viewer.py)**<br><br>![](https://img.shields.io/badge/Flask-Web%20Server-black?style=flat-square&logo=flask&logoColor=white) ![](https://img.shields.io/badge/HTML5-Semantic%20View-E34F26?style=flat-square&logo=html5&logoColor=white) | **Flask Lightweight Server**<br>Template: `src/viewer/templates/index.html` | Clean, CSS-free semantic HTML viewer displaying per-category breakdown tables (stars, planets, galaxies, etc.) with record counts and quick jump links. |
@@ -116,10 +116,11 @@ The deep space observation model categorizes imagery into five distinct astrophy
       <img src="readme_assets/rel-25-10.svg" width="46px" alt="Stage 02" />
     </td>
     <td>
-      <b>02. Deep Learning Training</b> (<code>training/</code>)<br>
-      ResNet-34 backbone pre-trained on ImageNet with a 5-class linear output head. Augmented with geometric normalization and trained with Automatic Mixed Precision (<code>torch.amp.autocast</code>).
+      <b>02. Deep Learning Training & Matplotlib Analytics</b> (<code>training/</code>)<br>
+      ResNet-34 backbone pre-trained on ImageNet with a 5-class linear output head. Augmented with geometric normalization and trained with Automatic Mixed Precision (<code>torch.amp.autocast</code>). Automatically generates loss/accuracy learning curves and confusion matrix heatmaps (<code>plot_training_metrics.py</code>).
     </td>
   </tr>
+
   <tr>
     <td width="55px" align="center" valign="top">
       <img src="readme_assets/rel-26-10.svg" width="46px" alt="Stage 03" />
@@ -223,9 +224,14 @@ NASA_TRAINING/
 |-- training/                         # Model training and dataset generation
 |   |-- dataset_generator.ipynb       # Harvester & CSV train/test split builder
 |   |-- network_training.ipynb        # ResNet-34 fine-tuning notebook
+|   |-- plot_training_metrics.py      # Matplotlib loss/accuracy & confusion matrix generator
 |   |-- cosmos_train.csv              # Training dataset index
 |   |-- cosmos_test.csv               # Test dataset index
-|   `-- trained_net.pth               # Exported PyTorch ResNet-34 weights
+|   |-- trained_net.pth               # Exported PyTorch ResNet-34 weights
+|   `-- huggingface/                  # Hugging Face Hub distribution package
+|       |-- README.md                 # Hugging Face Model Card metadata
+|       |-- LICENSE                   # CC BY-NC-SA 4.0 license file
+|       `-- hugging_face_distributor.py # Model & card publisher script
 |-- network_sorting/                  # Batch inference and classified archives
 |   |-- image_classifier.ipynb        # Inference & SQLite auto-sorter notebook
 |   |-- classified_images.db          # SQLite database tracking sorted files
