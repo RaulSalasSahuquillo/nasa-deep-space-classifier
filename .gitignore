@@ -1,5 +1,44 @@
-.venv
-/training/data/cifar-10-batches-py
-/training/data/cifar-10-python.tar.gz
-/src/validator/__pycache__
+# Git Ignore - NASA Deep Space Image Classification & Training Pipeline
+
+# Virtual Environments
+.venv/
+venv/
+env/
+ENV/
+
+# Environment Variables & API Secrets (NASA / Gemini keys)
 .env
+.env.local
+!.env.example
+
+# Python Bytecode & Cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyd
+
+# Jupyter Notebook Checkpoints
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+
+# Legacy & Downloaded Datasets
+/training/data/cifar-10-batches-py/
+/training/data/cifar-10-python.tar.gz
+
+# IDEs & Text Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Operating System Generated Files
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+ehthumbs.db
+
+# Logs & Temporary Outputs
+*.log
+*.tmp
