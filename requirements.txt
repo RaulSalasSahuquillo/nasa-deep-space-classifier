@@ -20,3 +20,8 @@ python-dotenv>=1.0.0
 flask>=2.3.0
 jupyter>=1.0.0
 ipykernel>=6.20.0
+
+# Gemini AI Validation & Analysis
+google-genai>=1.0.0
+pydantic>=2.0.0
+
