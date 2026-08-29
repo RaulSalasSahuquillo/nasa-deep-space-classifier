@@ -17,9 +17,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 from huggingface_hub import HfApi
 
-# ------------------------------------------------------------------------------
 # Dynamic Path Resolution
-# ------------------------------------------------------------------------------
 SCRIPT_DIR = Path(__file__).resolve().parent           # /training/huggingface
 TRAINING_DIR = SCRIPT_DIR.parent                      # /training
 PROJECT_ROOT = TRAINING_DIR.parent                    # project root
@@ -47,7 +45,7 @@ def main():
     print(f"License Source:     {LICENSE_PATH}")
     print("-" * 70)
 
-    # 1. Verify required files exist locally
+    # Verify required files exist locally
     if not WEIGHTS_PATH.exists():
         print(f"[ERROR] Model weights not found at: {WEIGHTS_PATH}")
         sys.exit(1)
@@ -60,10 +58,10 @@ def main():
         print(f"[ERROR] LICENSE file not found at: {LICENSE_PATH}")
         sys.exit(1)
 
-    # 2. Initialize Hugging Face API client
+    # Initialize Hugging Face API client
     api = HfApi()
 
-    # 3. Create or verify repository on Hugging Face
+    # Create or verify repository on Hugging Face
     print("\n[1/4] Verifying/Creating Hugging Face model repository...")
     api.create_repo(
         repo_id=REPO_ID,
@@ -73,7 +71,7 @@ def main():
     )
     print("      Repository ready.")
 
-    # 4. Upload Model Weights (astroclass_ai.pth)
+    # Upload Model Weights (astroclass_ai.pth)
     print(f"\n[2/4] Uploading model weights as 'astroclass_ai.pth' ({WEIGHTS_PATH.stat().st_size / (1024*1024):.2f} MB)...")
     api.upload_file(
         path_or_fileobj=str(WEIGHTS_PATH),
@@ -84,7 +82,7 @@ def main():
     )
     print("      Weights uploaded successfully.")
 
-    # 5. Upload Model Card (README.md)
+    # Upload Model Card (README.md)
     print("\n[3/4] Uploading Model Card as 'README.md'...")
     api.upload_file(
         path_or_fileobj=str(README_PATH),
@@ -95,7 +93,7 @@ def main():
     )
     print("      Model Card uploaded successfully.")
 
-    # 6. Upload License (LICENSE)
+    # Upload License (LICENSE)
     print("\n[4/4] Uploading license file as 'LICENSE'...")
     api.upload_file(
         path_or_fileobj=str(LICENSE_PATH),
