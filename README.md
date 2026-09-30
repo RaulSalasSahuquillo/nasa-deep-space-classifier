@@ -7,7 +7,7 @@
 > *"Initializing deep space observation pipeline..."*  
 > `[OK] NASA & MAST APIs authenticated.`  
 > `[OK] ResNet-34 neural backbone loaded.`  
-> `[OK] Gemini 2.5 Flash API multimodal auditor connected.`  
+> `[OK] Local AI validators connected.`  
 > `[OK] Ready for observation and validation.`  
 
 <p align="center">
@@ -92,7 +92,7 @@ The deep space observation model categorizes imagery into five distinct astrophy
 | <img src="readme_assets/rel-29-01.svg" width="36px" alt="Node" /> | **[Image Harvester](src/data_collection/image_collection.py)**<br><br>![](https://img.shields.io/badge/Python-3.12-3776AB?style=flat-square&logo=python&logoColor=white) ![](https://img.shields.io/badge/NASA-APOD%20API-E03C31?style=flat-square) ![](https://img.shields.io/badge/MAST-HST%20Archive-005EA2?style=flat-square) | **Astroquery & Requests**<br>Endpoints: NASA APOD, MAST HST Science Catalog | Automated batch downloader with keyword filtering, fast MJD window queries, deduplication registries, and high-resolution asset acquisition. |
 | <img src="readme_assets/rel-30-30.svg" width="36px" alt="Node" /> | **[Dataset & Model Training](training/network_training.ipynb)**<br><br>![](https://img.shields.io/badge/PyTorch-2.x-EE4C2C?style=flat-square&logo=pytorch&logoColor=white) ![](https://img.shields.io/badge/Matplotlib-Plots-11557c?style=flat-square) ![](https://img.shields.io/badge/ResNet--34-Backbone-blueviolet?style=flat-square) ![](https://img.shields.io/badge/CUDA-Mixed%20Precision-76B900?style=flat-square&logo=nvidia) | **ResNet-34 & Matplotlib Analytics**<br>Optimizer: `Adam` (lr=1e-4), Loss: `CrossEntropy` | Custom PyTorch `Dataset` with geometric augmentations (flips, rotations, normalization), AMP acceleration, and automated Matplotlib learning curves & confusion matrix plots. |
 | <img src="readme_assets/rel-31-00.svg" width="36px" alt="Node" /> | **[Classifier & Auto-Sorter](network_sorting/image_classifier.ipynb)**<br><br>![](https://img.shields.io/badge/TorchVision-Inference-orange?style=flat-square) ![](https://img.shields.io/badge/SQLite-3-003B57?style=flat-square&logo=sqlite&logoColor=white) | **Inference Engine & SQLite Logger**<br>DB: `network_sorting/classified_images.db` | Scans raw image directories, runs batch inference, automatically moves files to class-specific folders, and logs full audit metadata to SQLite. |
-| <img src="readme_assets/rel-33-00.svg" width="36px" alt="Node" /> | **[Gemini AI Validator](src/validator/gemini_validator.py)**<br><br>![](https://img.shields.io/badge/Google-Gemini%20Flash-4285F4?style=flat-square&logo=google) ![](https://img.shields.io/badge/Multimodal-Auditor-34A853?style=flat-square) | **Google GenAI SDK**<br>Model: `gemini-2.5-flash` | Automated multimodal auditor that evaluates neural classifications image-by-image, distinguishes CCD noise/cosmic rays from real objects, and prints real-time terminal reports. |
+| <img src="readme_assets/rel-33-00.svg" width="36px" alt="Node" /> | **[Qwen AI Validator & Trainer](src/validator/qwen_validator.py)**<br><br>![](https://img.shields.io/badge/Qwen-2.5--7B-darkgreen?style=flat-square) ![](https://img.shields.io/badge/In--Process-4--bit%20CUDA-76B900?style=flat-square&logo=nvidia) ![](https://img.shields.io/badge/Active-Weight%20Trainer-blueviolet?style=flat-square) | **Transformers & BitsAndBytes**<br>Model: `Qwen 7B (In-Process)` | Standalone in-process AI validator that audits classifications image-by-image and actively adjusts ResNet-34 neural network weights based on astrophysical evaluations. |
 | <img src="readme_assets/rel-34-10.svg" width="36px" alt="Node" /> | **[Classification Viewer](src/viewer/classification_viewer.py)**<br><br>![](https://img.shields.io/badge/Flask-Web%20Server-black?style=flat-square&logo=flask&logoColor=white) ![](https://img.shields.io/badge/HTML5-Semantic%20View-E34F26?style=flat-square&logo=html5&logoColor=white) | **Flask Lightweight Server**<br>Template: `src/viewer/templates/index.html` | Clean, CSS-free semantic HTML viewer displaying per-category breakdown tables (stars, planets, galaxies, etc.) with record counts and quick jump links. |
 
 <p align="center">
@@ -117,7 +117,7 @@ The deep space observation model categorizes imagery into five distinct astrophy
     </td>
     <td>
       <b>02. Deep Learning Training & Matplotlib Analytics</b> (<code>training/</code>)<br>
-      ResNet-34 backbone pre-trained on ImageNet with a 5-class linear output head. Augmented with geometric normalization and trained with Automatic Mixed Precision (<code>torch.amp.autocast</code>). Automatically generates loss/accuracy learning curves and confusion matrix heatmaps (<code>plot_training_metrics.py</code>).
+      ResNet-34 backbone pre-trained on ImageNet with a 5-class linear output head. Augmented with geometric normalization and trained with Automatic Mixed Precision (<code>torch.amp.autocast</code>). Automatically generates loss/accuracy learning curves and confusion matrix heatmaps (<code>plot_training_metrics.ipynb</code>).
     </td>
   </tr>
 
@@ -135,8 +135,8 @@ The deep space observation model categorizes imagery into five distinct astrophy
       <img src="readme_assets/rel-27-00.svg" width="46px" alt="Stage 04" />
     </td>
     <td>
-      <b>04. Gemini AI Multimodal Validator</b> (<code>src/validator/gemini_validator.py</code>)<br>
-      Audits each neural network prediction one-by-one using Google Gemini 2.5 Flash. Evaluates real morphology: detects whether point sources are true stars or CCD detector noise, dead pixels, and cosmic ray streaks on raw telescope files.
+      <b>04. Qwen AI In-Process Validator & Neural Weight Trainer</b> (<code>src/validator/qwen_validator.py</code>)<br>
+      Runs directly inside the Python process using 4-bit GPU quantization (zero external software/daemons required). Audits neural predictions image-by-image, extracts physical/photometric properties, and directly executes backpropagation on ResNet-34 weights (<code>trained_net.pth</code>) based on Qwen's astronomical supervision.
     </td>
   </tr>
   <tr>
@@ -154,54 +154,60 @@ The deep space observation model categorizes imagery into five distinct astrophy
   <img src="readme_assets/divider.svg" width="100%" alt="Section Divider" />
 </p>
 
-## Gemini AI Validation Spotlight
+## Qwen AI In-Process Validator & Neural Trainer Spotlight
 
-The Gemini validator performs deep multimodal reasoning on each image to evaluate ResNet-34 classification accuracy:
+The in-process Qwen validator evaluates ResNet-34 classification accuracy and performs online weight updates without requiring external platforms:
 
 ```text
-NASA DEEP SPACE CLASSIFIER - GEMINI AI VALIDATION
+NASA DEEP SPACE CLASSIFIER - QWEN AI VALIDATOR & NEURAL TRAINER
 
-Gemini Model:        gemini-2.5-flash
+Qwen Model:          models--Qwen--Qwen2.5-Coder-7B-Instruct (In-Process, 4-bit CUDA)
+Neural Network:      ResNet-34 (trained_net.pth)
+Active Weight Edit:  ENABLED (lr=0.0001)
 Data Source:         SQLite Database (network_sorting/classified_images.db)
 Total to Analyze:    5 images
-Delay Between Calls: 1.0s
---------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
 
-[001/005] Image: if7p62ofq_flc.jpg
-          Neural Net:     star       [->] Is correct?: [INCORRECT]
-          Gemini Detected:digital noise / sensor artifacts (Confidence: high)
-          Explanation:    The image depicts raw CCD calibration noise and cosmic ray streaks on black background, not celestial objects.
+[001/005] Image: m109franke2400.jpg
+          Neural Net:     galaxy     (P=57.3%) ➔ [✓ CORRECT]
+          Qwen Detected:  galaxy     (Confidence: high)
+          Explanation:    The image depicts an barred spiral galaxy with prominent arms and bright stellar core.
+          ⚡ Qwen Weight Step: Loss 0.557 ➔ 0.281 | Target [galaxy] Prob: 57.3% ➔ 75.5% (+18.2%)
 
-[002/005] Image: hst_17711_01_acs_sbc_f150lp_jffi01mu_drz.jpg
-          Neural Net:     star       [->] Is correct?: [CORRECT]
-          Gemini Detected:star (Confidence: high)
-          Explanation:    The image displays a dense field of point sources characteristic of a true stellar field with prominent star targets.
+[002/005] Image: retrogrademars03_tezel_big.jpg
+          Neural Net:     star       (P=48.2%) ➔ [✗ INCORRECT]
+          Qwen Detected:  planet     (Confidence: high)
+          Explanation:    Composite sequence showing retrograde motion of Mars against background stars.
+          ⚡ Qwen Weight Step: Loss 1.842 ➔ 0.690 | Target [planet] Prob: 15.8% ➔ 50.1% (+34.3%)
 
-
-FINAL VALIDATION SUMMARY
+FINAL VALIDATION & NEURAL TRAINING SUMMARY
 
 Images Analyzed:           5 / 5
-CORRECT Classifications:   1 (20.0%)
-INCORRECT Classifications: 4 (80.0%)
---------------------------------------------------------------------------------
+CORRECT Classifications:      3 (60.0%)
+INCORRECT Classifications:    2 (40.0%)
+Neural Weights Adjusted:   5 gradient updates applied
+Average Loss Reduction:    0.4120 per step
+-------------------------------------------------------------------------------------
 Breakdown by Category:
 Category     | Total  | Correct    | Incorrect    | Accuracy  
-------------------------------------------------------------
-star         | 5      | 1          | 4            |    20.0%
-================================================================================
+-----------------------------------------------------------------
+galaxy       | 2      | 2          | 0            |   100.0%
+planet       | 1      | 0          | 1            |     0.0%
+star         | 2      | 1          | 1            |    50.0%
+=====================================================================================
 ```
 
 ### CLI Command Options
 
 | Rail | Argument | Description | Example |
 | :---: | :--- | :--- | :--- |
-| <img src="readme_assets/rel-34-20.svg" width="36px" alt="Node" /> | `--limit`, `-l` | Maximum number of images to analyze | `python src/validator/gemini_validator.py --limit 10` |
-| <img src="readme_assets/rel-34-21.svg" width="36px" alt="Node" /> | `--category`, `-c` | Filter by category (`star`, `galaxy`, `nebula`, `planet`, `quasar`) | `python src/validator/gemini_validator.py --category galaxy` |
-| <img src="readme_assets/rel-36-20.svg" width="36px" alt="Node" /> | `--model`, `-m` | Gemini model name (default: `gemini-2.5-flash`) | `python src/validator/gemini_validator.py --model gemini-2.5-flash` |
-| <img src="readme_assets/rel-36-30.svg" width="36px" alt="Node" /> | `--delay`, `-d` | Seconds between requests (default: `1.0s`) | `python src/validator/gemini_validator.py --delay 0.5` |
-| <img src="readme_assets/rel-37-30.svg" width="36px" alt="Node" /> | `--save-report`, `-o` | Export results to a JSON report | `python src/validator/gemini_validator.py --save-report report.json` |
-| <img src="readme_assets/rel-37-40.svg" width="36px" alt="Node" /> | `--update-db` | Store audit results in `gemini_validations` SQLite table | `python src/validator/gemini_validator.py --update-db` |
-| <img src="readme_assets/rel-37-50.svg" width="36px" alt="Node" /> | `--image`, `-i` | Audit a single standalone image file directly | `python src/validator/gemini_validator.py --image network_sorting/nebula/hamster.jpg` |
+| <img src="readme_assets/rel-34-20.svg" width="36px" alt="Node" /> | `--limit`, `-l` | Maximum number of images to analyze | `python src/validator/qwen_validator.py --limit 10` |
+| <img src="readme_assets/rel-34-21.svg" width="36px" alt="Node" /> | `--category`, `-c` | Filter by category (`star`, `galaxy`, `nebula`, `planet`, `quasar`) | `python src/validator/qwen_validator.py --category galaxy` |
+| <img src="readme_assets/rel-36-20.svg" width="36px" alt="Node" /> | `--lr` | Learning rate for Qwen active weight steps (default: `0.0001`) | `python src/validator/qwen_validator.py --lr 0.0005` |
+| <img src="readme_assets/rel-36-30.svg" width="36px" alt="Node" /> | `--no-weight-updates` | Run in audit-only mode without altering weights | `python src/validator/qwen_validator.py --no-weight-updates` |
+| <img src="readme_assets/rel-37-30.svg" width="36px" alt="Node" /> | `--save-report`, `-o` | Export results and training metrics to JSON report | `python src/validator/qwen_validator.py --save-report report.json` |
+| <img src="readme_assets/rel-37-40.svg" width="36px" alt="Node" /> | `--update-db` | Store audit results in `qwen_validations` SQLite table | `python src/validator/qwen_validator.py --update-db` |
+| <img src="readme_assets/rel-37-50.svg" width="36px" alt="Node" /> | `--image`, `-i` | Audit & train a single standalone image file directly | `python src/validator/qwen_validator.py --image network_sorting/galaxy/m109franke2400.jpg` |
 
 <p align="center">
   <img src="readme_assets/divider.svg" width="100%" alt="Section Divider" />
@@ -224,7 +230,8 @@ NASA_TRAINING/
 |-- training/                         # Model training and dataset generation
 |   |-- dataset_generator.ipynb       # Harvester & CSV train/test split builder
 |   |-- network_training.ipynb        # ResNet-34 fine-tuning notebook
-|   |-- plot_training_metrics.py      # Matplotlib loss/accuracy & confusion matrix generator
+|   |-- plot_training_metrics.ipynb   # Interactive Matplotlib loss/accuracy & confusion matrix notebook
+|   |-- plot_training_metrics.py      # Standalone CLI loss/accuracy & confusion matrix generator
 |   |-- cosmos_train.csv              # Training dataset index
 |   |-- cosmos_test.csv               # Test dataset index
 |   |-- trained_net.pth               # Exported PyTorch ResNet-34 weights
@@ -244,7 +251,8 @@ NASA_TRAINING/
     |-- data_collection/
     |   `-- image_collection.py       # Automated APOD & MAST batch collector
     |-- validator/
-    |   `-- gemini_validator.py       # Google Gemini AI multimodal validator
+    |   |-- qwen_validator.py         # Standalone In-Process Qwen AI validator & neural weight trainer
+    |   `-- gemini_validator.py       # Transparent compatibility wrapper
     `-- viewer/
         |-- classification_viewer.py  # Flask database web dashboard
         `-- templates/
@@ -272,14 +280,13 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### <img src="readme_assets/rel-31-10.svg" width="36px" valign="middle" alt="Step 2" /> Step 2: Configure API Keys
+### <img src="readme_assets/rel-31-10.svg" width="36px" valign="middle" alt="Step 2" /> Step 2: Configure Environment
 
 ```bash
 # Copy environment template
 cp .env.example .env
 
-# Configure Gemini API key securely
-printf "Enter GEMINI_API_KEY (typing hidden): " && read -s val && echo && echo "GEMINI_API_KEY=$val" >> ".env" && echo "Saved."
+# (Optional) Customize Qwen model snapshot path in .env if not using default
 ```
 
 ### <img src="readme_assets/rel-33-10.svg" width="36px" valign="middle" alt="Step 3" /> Step 3: Harvest Astronomical Images (Optional)
@@ -295,17 +302,20 @@ Open and execute the interactive notebooks in Jupyter or VS Code:
 * `training/network_training.ipynb` — Train the ResNet-34 model and export `trained_net.pth`.
 * `network_sorting/image_classifier.ipynb` — Run inference and populate `classified_images.db`.
 
-### <img src="readme_assets/rel-36-30.svg" width="36px" valign="middle" alt="Step 5" /> Step 5: Audit Classifications with Gemini AI
+### <img src="readme_assets/rel-36-30.svg" width="36px" valign="middle" alt="Step 5" /> Step 5: Audit & Train Neural Network with In-Process Qwen AI
 
 ```bash
-# Validate all classified images
-python src/validator/gemini_validator.py
+# Audit classifications and actively update ResNet-34 weights online
+python src/validator/qwen_validator.py
 
-# Test first 5 images with custom delay
-python src/validator/gemini_validator.py --limit 5 --delay 1.0
+# Audit & update first 5 images
+python src/validator/qwen_validator.py --limit 5
 
 # Audit specific category and export report
-python src/validator/gemini_validator.py --category galaxy --save-report galaxy_audit.json
+python src/validator/qwen_validator.py --category galaxy --save-report galaxy_audit.json
+
+# Audit in read-only mode without modifying weights
+python src/validator/qwen_validator.py --limit 10 --no-weight-updates
 ```
 
 ### <img src="readme_assets/rel-40-10.svg" width="36px" valign="middle" alt="Step 6" /> Step 6: Launch Web Classification Viewer
@@ -346,4 +356,4 @@ This project is licensed under the **Creative Commons Attribution-NonCommercial-
 
 <br>
 
-<small>Special thanks to [ShrezesUverse](https://github.com/ShrezesUverse) for introducing me to the .svg files found in readme_assets, which have made this readme much more visual than it was before.</small>
+<small>Special thanks to [ShrezesUverse](https://github.com/ShrezesUverse) for providing the .svg files found in readme_assets.</small>

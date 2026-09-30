@@ -21,11 +21,17 @@ flask>=2.3.0
 jupyter>=1.0.0
 ipykernel>=6.20.0
 
-# Gemini AI Validation & Analysis
-google-genai>=1.0.0
+# Local Qwen AI Validation & Neural Network Training
+transformers>=4.37.0
+accelerate>=0.26.0
+bitsandbytes>=0.42.0
 pydantic>=2.0.0
+
+# Optional / Legacy Remote Gemini Validator
+# google-genai>=1.0.0
 
 # Model Distribution & Hugging Face Hub
 huggingface_hub>=0.20.0
+
 
 

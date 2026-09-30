@@ -33,14 +33,24 @@ model-index:
       name: Test Accuracy
 ---
 
-# `astroclass_ai` — NASA Deep Space Image Classifier
+# `astroclass_ai` (v1.1.0) — NASA Deep Space Image Classifier
 
-> **Astrophysical Deep Learning Backbone (ResNet-34)** fine-tuned on observational data from NASA Astronomy Picture of the Day (APOD) and the Mikulski Archive for Space Telescopes (MAST Hubble Space Telescope).
+> **Astrophysical Deep Learning Backbone (ResNet-34)** fine-tuned on observational data from NASA Astronomy Picture of the Day (APOD) and the Mikulski Archive for Space Telescopes (MAST Hubble Space Telescope), with online weight refinement guided by local **Qwen 2.5** astronomical auditing.
 
+* **Version:** `v1.1.0` (Updated model weights)
 * **Author:** Raúl Salas Sahuquillo
 * **GitHub Repository:** [RaulSalasSahuquillo/nasa-image-training](https://github.com/RaulSalasSahuquillo/nasa-image-training)
 * **Project Web Portal:** [NASA Deep Space Classifier Web](https://raulsalassahuquillo.github.io/nasa-deep-space-classifier-website/)
 * **License:** Creative Commons Attribution-NonCommercial-ShareAlike 4.0 (CC BY-NC-SA 4.0)
+
+---
+
+## Release Notes & Versions
+
+| Version | Status | Model Weights (`astroclass_ai.pth`) | Description |
+| :---: | :---: | :---: | :--- |
+| **`v1.1.0`** | **Latest** | **Updated** (Qwen 2.5 In-Process Supervised) | Model weights refined with 203 adaptive online gradient descent steps guided by local Qwen 2.5 astronomical evaluation and astrophysical feature extraction. Enhanced distinction of stellar cores, faint nebular structures, and sensor artifacts. |
+| **`v1.0.0`** | Historical | Baseline (25 Epochs) | Initial release trained on APOD and MAST Hubble Space Telescope imagery using ResNet-34 transfer learning. |
 
 ---
 
@@ -69,10 +79,11 @@ from torchvision.models import resnet34
 from PIL import Image
 from huggingface_hub import hf_hub_download
 
-# 1. Download weights from Hugging Face Hub
+# 1. Download weights from Hugging Face Hub (v1.1.0)
 model_path = hf_hub_download(
     repo_id="RaulSalasSahuquillo/astroclass_ai",
-    filename="astroclass_ai.pth"
+    filename="astroclass_ai.pth",
+    revision="main"  # or revision="v1.1.0"
 )
 
 # 2. Instantiate ResNet-34 with 5-class classification head
@@ -117,15 +128,20 @@ print(f"Prediction: {classes[predicted_idx]} ({probabilities[predicted_idx]*100:
 * **Loss Function:** Multi-class Cross-Entropy Loss (`nn.CrossEntropyLoss`).
 * **Acceleration:** PyTorch Automatic Mixed Precision (`torch.cuda.amp.autocast`).
 * **Augmentations:** Random horizontal flips, random 180° rotations, and standard image normalization.
-* **Epochs:** 25.
+* **Epochs:** 25 + Online In-Process Supervisor Gradient Updates.
 
 ---
 
-## Multimodal AI Validation (Google Gemini)
+## Local AI Supervision & Active Weight Training (Qwen 2.5)
 
-In the complete pipeline, classifications are audited one-by-one by **Google Gemini 2.5 Flash** to identify raw telescope artifacts (cosmic ray streaks, dead pixels, CCD calibration noise) and distinguish them from genuine astronomical targets.
+In version **`v1.1.0`**, the network weights were audited and trained locally using **Qwen 2.5** operating completely in-process on GPU. 
 
-For the full training notebooks, automated data harvester, SQLite logger, Gemini validator, and web viewer dashboard, visit the official [GitHub Repository](https://github.com/RaulSalasSahuquillo/nasa-image-training).
+For each observation:
+1. **Astrophysical Feature Extraction:** Analysis of mean luminance, background darkness, RGB channel distribution, and central concentration index.
+2. **AI Morphology Evaluation:** Qwen acts as an astrophysical expert, verifying or correcting the classification.
+3. **Adaptive Online Gradient Descent:** When corrections or confidence adjustments are needed, Qwen actively updates the ResNet-34 weights via single-sample backpropagation with frozen BatchNorm statistics to preserve global stability while refining decision boundaries.
+
+For the full training notebooks, automated data harvester, SQLite logger, Qwen validator/trainer, and web viewer dashboard, visit the official [GitHub Repository](https://github.com/RaulSalasSahuquillo/nasa-image-training).
 
 ---
 

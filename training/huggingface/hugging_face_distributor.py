@@ -11,6 +11,7 @@
 #               (README.md), and LICENSE to Hugging Face Hub.
 # ==============================================================================
 
+import argparse
 import os
 import sys
 from pathlib import Path
@@ -22,32 +23,66 @@ SCRIPT_DIR = Path(__file__).resolve().parent           # /training/huggingface
 TRAINING_DIR = SCRIPT_DIR.parent                      # /training
 PROJECT_ROOT = TRAINING_DIR.parent                    # project root
 
-WEIGHTS_PATH = TRAINING_DIR / "trained_net.pth"       # /training/trained_net.pth
-README_PATH = SCRIPT_DIR / "README.md"                # /training/huggingface/README.md
-LICENSE_PATH = SCRIPT_DIR / "LICENSE"                 # /training/huggingface/LICENSE
-ENV_PATH = PROJECT_ROOT / ".env"                      # .env
+DEFAULT_WEIGHTS_PATH = TRAINING_DIR / "trained_net.pth"  # /training/trained_net.pth
+README_PATH = SCRIPT_DIR / "README.md"                   # /training/huggingface/README.md
+LICENSE_PATH = SCRIPT_DIR / "LICENSE"                    # /training/huggingface/LICENSE
+ENV_PATH = PROJECT_ROOT / ".env"                         # .env
 
 # Load environment variables if HF_TOKEN is defined in .env
 if ENV_PATH.exists():
     load_dotenv(ENV_PATH)
 
 # Target Hugging Face Repository
-REPO_ID = "RaulSalasSahuquillo/astroclass_ai"
+DEFAULT_REPO_ID = "RaulSalasSahuquillo/astroclass_ai"
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(
+        description="Publish updated model weights, model card, and release tags to Hugging Face Hub."
+    )
+    parser.add_argument(
+        "--version",
+        type=str,
+        default="v1.1.0",
+        help="Release version tag (e.g., v1.1.0)"
+    )
+    parser.add_argument(
+        "--weights",
+        type=Path,
+        default=DEFAULT_WEIGHTS_PATH,
+        help="Path to trained .pth weights file"
+    )
+    parser.add_argument(
+        "--repo-id",
+        type=str,
+        default=DEFAULT_REPO_ID,
+        help="Hugging Face repository ID (owner/repo)"
+    )
+    parser.add_argument(
+        "--no-tag",
+        action="store_true",
+        help="Skip creating a git tag for this release"
+    )
+    return parser.parse_args()
 
 
 def main():
-    print("=" * 70)
-    print("  HUGGING FACE MODEL DISTRIBUTOR — ASTROCLASS AI")
-    print("=" * 70)
-    print(f"Target Repository:  https://huggingface.co/{REPO_ID}")
-    print(f"Weights Source:     {WEIGHTS_PATH}")
+    args = parse_args()
+    version = args.version
+    repo_id = args.repo_id
+    weights_path = args.weights
+
+    print("  HUGGING FACE MODEL DISTRIBUTOR — ASTROCLASS AI\n")
+    print(f"Target Repository:  https://huggingface.co/{repo_id}")
+    print(f"Release Version:    {version}")
+    print(f"Weights Source:     {weights_path}")
     print(f"Model Card Source:  {README_PATH}")
     print(f"License Source:     {LICENSE_PATH}")
     print("-" * 70)
 
     # Verify required files exist locally
-    if not WEIGHTS_PATH.exists():
-        print(f"[ERROR] Model weights not found at: {WEIGHTS_PATH}")
+    if not weights_path.exists():
+        print(f"[ERROR] Model weights not found at: {weights_path}")
         sys.exit(1)
 
     if not README_PATH.exists():
@@ -62,9 +97,9 @@ def main():
     api = HfApi()
 
     # Create or verify repository on Hugging Face
-    print("\n[1/4] Verifying/Creating Hugging Face model repository...")
+    print("\n[1/5] Verifying/Creating Hugging Face model repository...")
     api.create_repo(
-        repo_id=REPO_ID,
+        repo_id=repo_id,
         repo_type="model",
         private=False,
         exist_ok=True
@@ -72,42 +107,58 @@ def main():
     print("      Repository ready.")
 
     # Upload Model Weights (astroclass_ai.pth)
-    print(f"\n[2/4] Uploading model weights as 'astroclass_ai.pth' ({WEIGHTS_PATH.stat().st_size / (1024*1024):.2f} MB)...")
+    print(f"\n[2/5] Uploading model weights as 'astroclass_ai.pth' ({weights_path.stat().st_size / (1024*1024):.2f} MB)...")
     api.upload_file(
-        path_or_fileobj=str(WEIGHTS_PATH),
+        path_or_fileobj=str(weights_path),
         path_in_repo="astroclass_ai.pth",
-        repo_id=REPO_ID,
+        repo_id=repo_id,
         repo_type="model",
-        commit_message="Upload ResNet-34 trained weights (astroclass_ai.pth)"
+        commit_message=f"Release {version}: Update ResNet-34 model weights (astroclass_ai.pth)"
     )
     print("      Weights uploaded successfully.")
 
     # Upload Model Card (README.md)
-    print("\n[3/4] Uploading Model Card as 'README.md'...")
+    print("\n[3/5] Uploading Model Card as 'README.md'...")
     api.upload_file(
         path_or_fileobj=str(README_PATH),
         path_in_repo="README.md",
-        repo_id=REPO_ID,
+        repo_id=repo_id,
         repo_type="model",
-        commit_message="Update Hugging Face Model Card (README.md)"
+        commit_message=f"Release {version}: Update Hugging Face Model Card (README.md)"
     )
     print("      Model Card uploaded successfully.")
 
     # Upload License (LICENSE)
-    print("\n[4/4] Uploading license file as 'LICENSE'...")
+    print("\n[4/5] Uploading license file as 'LICENSE'...")
     api.upload_file(
         path_or_fileobj=str(LICENSE_PATH),
         path_in_repo="LICENSE",
-        repo_id=REPO_ID,
+        repo_id=repo_id,
         repo_type="model",
-        commit_message="Add CC BY-NC-SA 4.0 LICENSE file"
+        commit_message=f"Release {version}: Update CC BY-NC-SA 4.0 LICENSE file"
     )
     print("      LICENSE uploaded successfully.")
 
+    # Create Git Release Tag on Hugging Face
+    if not args.no_tag:
+        print(f"\n[5/5] Creating Git release tag '{version}' on Hugging Face...")
+        try:
+            api.create_tag(
+                repo_id=repo_id,
+                tag=version,
+                tag_message=f"Release {version}: Updated weights trained with Qwen local AI audit",
+                exist_ok=True
+            )
+            print(f"      Tag '{version}' created successfully.")
+        except Exception as e:
+            print(f"      [WARNING] Could not create tag '{version}': {e}")
+    else:
+        print("\n[5/5] Skipping tag creation (--no-tag specified).")
+
     print("\n" + "=" * 70)
     print("  ALL ASSETS PUBLISHED SUCCESSFULLY!")
-    print(f"  View your model on Hugging Face: https://huggingface.co/{REPO_ID}")
-    print("=" * 70 + "\n")
+    print(f"  View your model on Hugging Face: https://huggingface.co/{repo_id}")
+    print(f"  Release Tag: {version}")
 
 
 if __name__ == "__main__":

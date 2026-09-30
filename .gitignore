@@ -1,44 +1,132 @@
-# Git Ignore - NASA Deep Space Image Classification & Training Pipeline
+# ==============================================================================
+# Git Ignore - NASA Deep Space Image Classification & Neural Training Pipeline
+# ==============================================================================
+
+# Environment Variables, Secrets & API Tokens
+.env
+.env.*
+.env.local
+.env.development
+.env.test
+.env.production
+!.env.example
+*.pem
+*.key
+*.crt
+*.cer
+*.pfx
+*.p12
+*.token
+.hf_token
+hf_token
+secrets/
+secrets.json
+credentials.json
+client_secret*.json
+wandb/
+
+# Model Checkpoints, Training Backups & Weights Exports
+*.backup
+*.pth.backup
+*.pt.backup
+*.pth.old
+*.pt.old
+*.bak
+*.ckpt
+checkpoint*/
+checkpoints/
+runs/
+weights_backup/
+
+# SQLite Databases & Local Runtime Storage (User Machine Paths & State)
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+*.db-wal
+*.db-shm
+network_sorting/*.db
+classified_images.db
+
+# Validation Reports, Test Outputs & Execution Artifacts
+*report*.json
+test_report.json
+reports/
+evaluation_reports/
+*.log
+*.tmp
+*.temp
+
+# Python Bytecode & Packaging Caches
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyd
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
 
 # Virtual Environments
 .venv/
 venv/
 env/
 ENV/
+env.bak/
+venv.bak/
 
-# Environment Variables & API Secrets (NASA / Gemini keys)
-.env
-.env.local
-!.env.example
-
-# Python Bytecode & Cache
-__pycache__/
-*.py[cod]
-*$py.class
-*.pyd
-
-# Jupyter Notebook Checkpoints
+# Jupyter Notebook Checkpoints & Temporary Files
 .ipynb_checkpoints/
 */.ipynb_checkpoints/*
+*-checkpoint.ipynb
 
-# Legacy & Downloaded Datasets
-/training/data/cifar-10-batches-py/
-/training/data/cifar-10-python.tar.gz
+# Testing, Coverage & Code Quality Caches
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.mypy_cache/
+.ruff_cache/
 
-# IDEs & Text Editors
+# IDEs, Text Editors & Operating System Files
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
-
-# Operating System Generated Files
+.cursor/
+.windsurf/
+*.sublime-project
+*.sublime-workspace
 .DS_Store
 .DS_Store?
 ._*
 Thumbs.db
 ehthumbs.db
+desktop.ini
 
-# Logs & Temporary Outputs
-*.log
-*.tmp
+# Hugging Face & Model Hub Local Caches
+.cache/
+transformers_cache/
+hub_cache/
+
+# Legacy & Downloaded Compressed Archives
+/training/data/cifar-10-batches-py/
+/training/data/cifar-10-python.tar.gz
+*.tar.gz
+*.zip
+*.tar
+*.tgz
