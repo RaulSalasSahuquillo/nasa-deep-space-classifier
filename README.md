@@ -13,7 +13,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3.12-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python 3.12" />
   <img src="https://img.shields.io/badge/PyTorch-2.x-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white" alt="PyTorch" />
-  <img src="https://img.shields.io/badge/Google%20Gemini-Flash%202.5-4285F4?style=for-the-badge&logo=google&logoColor=white" alt="Google Gemini" />
+  <img src="https://img.shields.io/badge/Qwen-2.5--7B%20Validator-darkgreen?style=for-the-badge" alt="Qwen 2.5 Validator" />
   <img src="https://img.shields.io/badge/NASA-APOD%20API-E03C31?style=for-the-badge" alt="NASA APOD" />
   <img src="https://img.shields.io/badge/MAST-HST%20Archive-005EA2?style=for-the-badge" alt="MAST HST" />
   <img src="https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg?style=for-the-badge" alt="CC BY-NC-SA 4.0" />
@@ -21,7 +21,7 @@
 
 Welcome to **nasa-image-training**! This repository hosts an end-to-end Deep Learning and Computer Vision pipeline designed to collect, process, train, classify, audit, and visualize astronomical imagery from NASA and the Mikulski Archive for Space Telescopes (MAST). 
 
-Using a custom fine-tuned **ResNet-34** convolutional neural network alongside **Google Gemini AI (Multimodal Vision)**, the system categorizes deep space captures into five astrophysical classes (**stars**, **galaxies**, **quasars**, **nebulae**, and **planets**) and audits each classification in real-time to detect sensor artifacts, cosmic ray hits, and false positives.
+Using a custom fine-tuned **ResNet-34** convolutional neural network alongside a local **Qwen 2.5** AI validator (running in-process on your GPU), the system categorizes deep space captures into five astrophysical classes (**stars**, **galaxies**, **quasars**, **nebulae**, and **planets**) and audits each classification in real-time to detect sensor artifacts, cosmic ray hits, and false positives.
 
 ```mermaid
 flowchart LR
@@ -31,7 +31,7 @@ flowchart LR
     D --> E[("SQLite DB (classified_images.db)")]
     D --> F["Sorted Folders (star, galaxy, nebula...)"]
     E --> G["Flask DB Viewer (src/viewer/)"]
-    E --> H["Gemini AI Validator (src/validator/)"]
+    E --> H["Qwen AI Validator (src/validator/)"]
     F --> H
 ```
 
@@ -80,6 +80,40 @@ The deep space observation model categorizes imagery into five distinct astrophy
 | <img src="readme_assets/rel-26-10.svg" width="36px" alt="Node" /> | **`nebula`** | Emission, reflection, planetary nebulae, supernova remnants, and dark dust clouds. | *Crab Nebula, Horsehead Nebula, Tarantula, Trifid* |
 | <img src="readme_assets/rel-27-00.svg" width="36px" alt="Node" /> | **`planet`** | Solar system planets, planetary moons, ring systems, and planetary surface details. | *Jupiter, Mars, Rhea, Titan Lakes, Cassini views* |
 | <img src="readme_assets/rel-28-00.svg" width="36px" alt="Node" /> | **`quasar`** | Active galactic nuclei, distant energetic pulsars, and high-energy radio sources. | *Vela Pulsar, Abell 2744 Frontier Field* |
+
+<p align="center">
+  <img src="readme_assets/divider.svg" width="100%" alt="Section Divider" />
+</p>
+
+## Model Comparison: 1.2 Flash vs Previous Model
+
+`1.2 Flash` (`training/trained_net.pth`) is a drop-in replacement: same ResNet-34, same five classes. It was trained on ~70,500 images streamed into RAM from SDSS, DECaLS, the NASA Images API, ESA/Hubble and Wikimedia Commons (see [MODEL_CHANGELOG.md](MODEL_CHANGELOG.md)). The previous model is `v1.0` (`trained_net.pth.backup`, 25 epochs on ~5,000 images). The weights file that was in `trained_net.pth` before this release had degraded (near-uniform outputs) and is shown for completeness.
+
+| Metric | **1.2 Flash** (new) | v1.0 (previous) | Degraded `trained_net.pth` (replaced) |
+| :--- | :---: | :---: | :---: |
+| **Held-out streamed images**, accuracy (n = 4,131) | **93.4%** | 36.7% | 25.6% |
+| Held-out streamed images, balanced accuracy | **93.8%** | 45.9% | 22.3% |
+| Held-out, curated sources only (NASA/Commons, n = 898) | **97.0%** | 75.1% | 22.3% |
+| **Real-world pictures**, accuracy (85 images, 3 independent reviewers each) | **87.1%** (74/85) | 71.8% (61/85) | 38.8% (33/85) |
+| Training images | ~70,500 | ~5,000 | ~5,000 |
+| Training time / hardware | ~120 min, RTX 4060 Laptop | 25 epochs, Colab T4 | 25 epochs, Colab T4 |
+| Inference input / output | 224x224 RGB, 5 classes | identical | identical |
+
+**Per-class results**
+
+| Class | Held-out recall: 1.2 Flash | Held-out recall: v1.0 | Real-world: 1.2 Flash | Real-world: v1.0 |
+| :--- | :---: | :---: | :---: | :---: |
+| `star` | **90.6%** | 1.6% | 2/6 | 2/6 |
+| `galaxy` | **97.2%** | 90.6% | **25/27** | 18/27 |
+| `quasar` | **89.9%** | 2.1% | 0/3 | 1/3 |
+| `nebula` | **91.7%** | 56.1% | **37/38** | 31/38 |
+| `planet` | **99.5%** | 78.9% | 10/11 | 9/11 |
+
+> **How to read this**
+> * The held-out set is a 5% split chosen by an image-id hash, never used for training. v1.0 scores low there mainly because it never saw SDSS-style `star` and `quasar` cutouts, so the *real-world* rows are the fairer comparison.
+> * Real-world labels come from independent reviewers (not astronomers). `star` (6) and `quasar` (3) have very few samples, so their per-class numbers are noisy. 18 pictures that fit none of the five classes (Moon, meteor showers, landscapes...) were excluded.
+> * The `v1.1.0` weights published on Hugging Face were not re-evaluated here, so they are not in the table (their reported 94.2% was measured on a different test set).
+> * Known weak spots of 1.2 Flash: globular clusters are often called `galaxy`, real quasars/pulsars/jets are not recognised reliably, and `nebula` has the fewest training images (2,128). Details in the changelog.
 
 <p align="center">
   <img src="readme_assets/divider.svg" width="100%" alt="Section Divider" />
@@ -217,7 +251,7 @@ star         | 2      | 1          | 1            |    50.0%
 
 ```
 NASA_TRAINING/
-|-- .env                              # Environment keys (NASA_API_KEY, GEMINI_API_KEY)
+|-- .env                              # Environment keys (NASA_API_KEY, QWEN_MODEL_PATH)
 |-- .env.example                      # Environment template
 |-- requirements.txt                  # Python dependencies
 |-- README.md                         # Project documentation
@@ -301,6 +335,13 @@ python src/data_collection/image_collection.py
 Open and execute the interactive notebooks in Jupyter or VS Code:
 * `training/network_training.ipynb` — Train the ResNet-34 model and export `trained_net.pth`.
 * `network_sorting/image_classifier.ipynb` — Run inference and populate `classified_images.db`.
+
+For the large-scale streaming fine-tune used by `1.2 Flash` (images go straight to RAM, nothing is saved to disk), run:
+
+```bash
+python training/stream_train.py --target 20000
+python training/eval_streamed_holdout.py --weights training/trained_net.pth.backup training/trained_net.pth
+```
 
 ### <img src="readme_assets/rel-36-30.svg" width="36px" valign="middle" alt="Step 5" /> Step 5: Audit & Train Neural Network with In-Process Qwen AI
 

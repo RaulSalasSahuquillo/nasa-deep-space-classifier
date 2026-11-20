@@ -1,0 +1,279 @@
+[21:12:36] run dir: /home/rsalas/Documentos/NASA_TRAINING/training/stream_runs/20261107_211236
+[21:12:36] args: {'target': 20000, 'init': PosixPath('/home/rsalas/Documentos/NASA_TRAINING/training/trained_net.pth'), 'out': PosixPath('/home/rsalas/Documentos/NASA_TRAINING/training/trained_net_stream.pth'), 'batch': 128, 'lr': 0.0002, 'wd': 0.02, 'warmup': 300, 'decay_steps': 5000, 'min_start': 800, 'start_timeout_min': 10.0, 'max_fetch_min': 120.0, 'eval_every': 1000, 'val_fraction': 0.05, 'label_smoothing': 0.05, 'only': None, 'seed': 0}
+[21:12:36] streaming started: 14 sources -> RAM only (no disk writes)
+[21:12:36] warming up: star=0 galaxy=0 quasar=0 nebula=0 planet=0 | ok=0 dupImg=0 conflict=0 bad=0 | RAM=0MB
+[21:12:56] warming up: star=36 galaxy=440 quasar=13 nebula=352 planet=380 | ok=1221 dupImg=257 conflict=140 bad=96 | RAM=21MB
+[21:13:16] warming up: star=66 galaxy=1001 quasar=13 nebula=637 planet=620 | ok=2337 dupImg=432 conflict=210 bad=139 | RAM=42MB
+[21:13:36] warming up: star=762 galaxy=1684 quasar=13 nebula=826 planet=818 | ok=4103 dupImg=665 conflict=342 bad=193 | RAM=65MB
+[21:13:56] warming up: star=1427 galaxy=2598 quasar=13 nebula=909 planet=1046 | ok=5993 dupImg=995 conflict=490 bad=232 | RAM=88MB
+[21:14:16] warming up: star=2231 galaxy=3641 quasar=107 nebula=1023 planet=1235 | ok=8237 dupImg=1313 conflict=690 bad=289 | RAM=114MB
+[21:14:36] warming up: star=3023 galaxy=4553 quasar=500 nebula=1154 planet=1412 | ok=10642 dupImg=1654 conflict=843 bad=352 | RAM=141MB
+[21:14:56] start training with: star=3761 galaxy=5613 quasar=857 nebula=1305 planet=1524 | ok=13060 dupImg=1886 conflict=995 bad=424 | RAM=170MB
+[21:14:58] training loop started
+[21:15:56] step    100 loss=1.1653 acc=71.8% lr=6.67e-05 220 img/s [streaming] | star=5747 galaxy=7429 quasar=1595 nebula=1590 planet=2043 | ok=18404 dupImg=2404 conflict=1444 bad=657 | RAM=232MB
+[21:16:43] step    200 loss=0.6157 acc=85.0% lr=1.33e-04 246 img/s [streaming] | star=7055 galaxy=8807 quasar=2062 nebula=1826 planet=2357 | ok=22107 dupImg=2687 conflict=1675 bad=800 | RAM=277MB
+[21:17:24] step    300 loss=0.5170 acc=87.8% lr=2.00e-04 263 img/s [streaming] | star=8426 galaxy=10247 quasar=2644 nebula=1954 planet=2587 | ok=25858 dupImg=3103 conflict=2001 bad=951 | RAM=321MB
+[21:18:04] step    400 loss=0.4703 acc=89.5% lr=2.00e-04 276 img/s [streaming] | star=9731 galaxy=11659 quasar=3178 nebula=2019 planet=3089 | ok=29676 dupImg=3482 conflict=2307 bad=1081 | RAM=367MB
+[21:18:48] step    500 loss=0.4550 acc=90.2% lr=2.00e-04 279 img/s [streaming] | star=11056 galaxy=13189 quasar=3782 nebula=2032 planet=3610 | ok=33669 dupImg=3743 conflict=2581 bad=1240 | RAM=414MB
+[21:19:31] step    600 loss=0.4297 acc=91.1% lr=2.00e-04 282 img/s [streaming] | star=12591 galaxy=14903 quasar=4452 nebula=2032 planet=4225 | ok=38203 dupImg=3984 conflict=2864 bad=1470 | RAM=466MB
+[21:20:14] step    700 loss=0.4352 acc=91.3% lr=2.00e-04 284 img/s [streaming] | star=13950 galaxy=16204 quasar=5037 nebula=2034 planet=4805 | ok=42030 dupImg=4245 conflict=3140 bad=1658 | RAM=511MB
+[21:21:04] step    800 loss=0.4151 acc=91.6% lr=2.00e-04 280 img/s [streaming] | star=15404 galaxy=17297 quasar=5587 nebula=2034 planet=5513 | ok=45835 dupImg=4459 conflict=3387 bad=1783 | RAM=557MB
+[21:21:40] step    900 loss=0.4042 acc=92.0% lr=2.00e-04 287 img/s [streaming] | star=16670 galaxy=18777 quasar=6177 nebula=2038 planet=5839 | ok=49501 dupImg=4743 conflict=3667 bad=1938 | RAM=599MB
+[21:22:10] step   1000 loss=0.4097 acc=91.9% lr=2.00e-04 297 img/s [streaming] | star=17564 galaxy=20360 quasar=6774 nebula=2038 planet=5897 | ok=52633 dupImg=4921 conflict=3908 bad=2013 | RAM=634MB
+[21:22:17] EVAL[periodic] step=1000 n=2682 acc=90.34% bacc=88.56% f1=88.69% | star:84.8 galaxy:96.6 quasar:81.4 nebula:81.0 planet:99.1
+[21:22:52] step   1100 loss=0.3983 acc=92.6% lr=2.00e-04 297 img/s [streaming] | star=18288 galaxy=20938 quasar=7833 nebula=2038 planet=6233 | ok=55330 dupImg=5372 conflict=4205 bad=2294 | RAM=660MB
+[21:23:24] step   1200 loss=0.4004 acc=92.4% lr=2.00e-04 304 img/s [streaming] | star=18815 galaxy=20938 quasar=8676 nebula=2038 planet=6420 | ok=56887 dupImg=5767 conflict=4356 bad=2479 | RAM=673MB
+[21:23:57] step   1300 loss=0.3942 acc=92.6% lr=2.00e-04 309 img/s [streaming] | star=19332 galaxy=20938 quasar=9451 nebula=2038 planet=6636 | ok=58395 dupImg=6137 conflict=4512 bad=2813 | RAM=687MB
+[21:24:31] step   1400 loss=0.3889 acc=92.7% lr=2.00e-04 313 img/s [streaming] | star=19988 galaxy=20940 quasar=10366 nebula=2039 planet=6993 | ok=60326 dupImg=6284 conflict=4727 bad=3051 | RAM=706MB
+[21:25:02] step   1500 loss=0.4019 acc=92.0% lr=2.00e-04 318 img/s [streaming] | star=20158 galaxy=20940 quasar=11152 nebula=2039 planet=7259 | ok=61548 dupImg=6361 conflict=4842 bad=3149 | RAM=718MB
+[21:25:32] step   1600 loss=0.3877 acc=93.0% lr=2.00e-04 323 img/s [streaming] | star=20158 galaxy=20940 quasar=11976 nebula=2039 planet=7397 | ok=62510 dupImg=6435 conflict=4983 bad=3232 | RAM=727MB
+[21:26:01] step   1700 loss=0.3855 acc=92.9% lr=2.00e-04 328 img/s [streaming] | star=20158 galaxy=20940 quasar=12932 nebula=2039 planet=7412 | ok=63481 dupImg=6496 conflict=5091 bad=3334 | RAM=734MB
+[21:26:31] step   1800 loss=0.3844 acc=93.1% lr=2.00e-04 333 img/s [streaming] | star=20158 galaxy=20941 quasar=13889 nebula=2039 planet=7425 | ok=64452 dupImg=6569 conflict=5211 bad=3437 | RAM=742MB
+[21:27:12] step   1900 loss=0.3816 acc=93.1% lr=2.00e-04 331 img/s [streaming] | star=20158 galaxy=20942 quasar=15121 nebula=2039 planet=8064 | ok=66324 dupImg=6792 conflict=5432 bad=3605 | RAM=764MB
+[21:27:46] step   2000 loss=0.3808 acc=93.2% lr=2.00e-04 333 img/s [streaming] | star=20161 galaxy=20943 quasar=16170 nebula=2039 planet=8285 | ok=67598 dupImg=6891 conflict=5566 bad=3742 | RAM=777MB
+[21:27:52] EVAL[periodic] step=2000 n=3465 acc=92.47% bacc=92.95% f1=92.52% | star:86.4 galaxy:97.7 quasar:90.2 nebula:92.0 planet:98.5
+[21:28:30] step   2100 loss=0.3823 acc=93.2% lr=2.00e-04 331 img/s [streaming] | star=20163 galaxy=20943 quasar=17400 nebula=2043 planet=8491 | ok=69040 dupImg=7156 conflict=5734 bad=4009 | RAM=790MB
+[21:29:00] step   2200 loss=0.3801 acc=93.2% lr=2.00e-04 335 img/s [streaming] | star=20163 galaxy=20943 quasar=18346 nebula=2043 planet=8491 | ok=69986 dupImg=7212 conflict=5840 bad=4110 | RAM=797MB
+[21:29:30] step   2300 loss=0.3762 acc=93.7% lr=2.00e-04 338 img/s [streaming] | star=20163 galaxy=20943 quasar=18347 nebula=2043 planet=8491 | ok=69987 dupImg=7213 conflict=5840 bad=4110 | RAM=797MB
+[21:30:01] step   2400 loss=0.3781 acc=93.0% lr=2.00e-04 340 img/s [streaming] | star=20167 galaxy=20944 quasar=18347 nebula=2045 planet=8491 | ok=69994 dupImg=7217 conflict=5844 bad=4111 | RAM=798MB
+[21:30:30] step   2500 loss=0.3753 acc=93.3% lr=2.00e-04 343 img/s [streaming] | star=20167 galaxy=20944 quasar=18347 nebula=2045 planet=8491 | ok=69994 dupImg=7217 conflict=5844 bad=4111 | RAM=798MB
+[21:31:00] step   2600 loss=0.3752 acc=93.5% lr=2.00e-04 346 img/s [streaming] | star=20167 galaxy=20944 quasar=18347 nebula=2045 planet=8491 | ok=69994 dupImg=7217 conflict=5844 bad=4111 | RAM=798MB
+[21:31:29] step   2700 loss=0.3710 acc=93.5% lr=2.00e-04 349 img/s [streaming] | star=20167 galaxy=20944 quasar=18347 nebula=2045 planet=8491 | ok=69994 dupImg=7217 conflict=5844 bad=4111 | RAM=798MB
+[21:31:57] step   2800 loss=0.3702 acc=93.4% lr=2.00e-04 352 img/s [streaming] | star=20167 galaxy=20944 quasar=18347 nebula=2045 planet=8491 | ok=69994 dupImg=7217 conflict=5844 bad=4111 | RAM=798MB
+[21:32:26] step   2900 loss=0.3717 acc=93.5% lr=2.00e-04 354 img/s [streaming] | star=20168 galaxy=20946 quasar=18347 nebula=2047 planet=8491 | ok=69999 dupImg=7222 conflict=5847 bad=4111 | RAM=798MB
+[21:32:55] step   3000 loss=0.3697 acc=93.7% lr=2.00e-04 357 img/s [streaming] | star=20168 galaxy=20946 quasar=18347 nebula=2048 planet=8491 | ok=70000 dupImg=7223 conflict=5848 bad=4111 | RAM=798MB
+[21:32:59] EVAL[periodic] step=3000 n=3592 acc=92.79% bacc=93.42% f1=92.81% | star:86.9 galaxy:97.2 quasar:91.4 nebula:93.0 planet:98.5
+[21:33:29] step   3100 loss=0.3663 acc=93.6% lr=2.00e-04 357 img/s [streaming] | star=20168 galaxy=20949 quasar=18347 nebula=2049 planet=8491 | ok=70004 dupImg=7227 conflict=5855 bad=4112 | RAM=798MB
+[21:33:57] step   3200 loss=0.3712 acc=93.6% lr=2.00e-04 360 img/s [streaming] | star=20168 galaxy=20949 quasar=18347 nebula=2049 planet=8491 | ok=70004 dupImg=7227 conflict=5855 bad=4112 | RAM=798MB
+[21:34:26] step   3300 loss=0.3702 acc=93.5% lr=2.00e-04 362 img/s [streaming] | star=20168 galaxy=20949 quasar=18347 nebula=2049 planet=8491 | ok=70004 dupImg=7227 conflict=5855 bad=4112 | RAM=798MB
+[21:34:55] step   3400 loss=0.3652 acc=93.8% lr=2.00e-04 364 img/s [streaming] | star=20168 galaxy=20950 quasar=18347 nebula=2053 planet=8491 | ok=70009 dupImg=7231 conflict=5856 bad=4112 | RAM=798MB
+[21:35:25] step   3500 loss=0.3612 acc=93.9% lr=2.00e-04 365 img/s [streaming] | star=20168 galaxy=20950 quasar=18347 nebula=2053 planet=8491 | ok=70009 dupImg=7231 conflict=5856 bad=4112 | RAM=798MB
+[21:36:01] step   3600 loss=0.3651 acc=93.6% lr=2.00e-04 365 img/s [streaming] | star=20170 galaxy=20955 quasar=18347 nebula=2054 planet=8491 | ok=70017 dupImg=7242 conflict=5860 bad=4112 | RAM=798MB
+[21:36:33] step   3700 loss=0.3683 acc=93.6% lr=2.00e-04 366 img/s [streaming] | star=20170 galaxy=20957 quasar=18347 nebula=2054 planet=8491 | ok=70019 dupImg=7244 conflict=5862 bad=4114 | RAM=798MB
+[21:37:01] step   3800 loss=0.3595 acc=94.1% lr=2.00e-04 368 img/s [streaming] | star=20170 galaxy=20957 quasar=18347 nebula=2054 planet=8491 | ok=70019 dupImg=7244 conflict=5862 bad=4114 | RAM=798MB
+[21:37:30] step   3900 loss=0.3557 acc=94.2% lr=2.00e-04 369 img/s [streaming] | star=20170 galaxy=20965 quasar=18347 nebula=2054 planet=8491 | ok=70027 dupImg=7250 conflict=5862 bad=4114 | RAM=798MB
+[21:37:59] step   4000 loss=0.3599 acc=94.2% lr=2.00e-04 371 img/s [streaming] | star=20170 galaxy=20969 quasar=18347 nebula=2054 planet=8491 | ok=70031 dupImg=7255 conflict=5862 bad=4116 | RAM=798MB
+[21:38:02] EVAL[periodic] step=4000 n=3595 acc=93.18% bacc=93.68% f1=93.41% | star:88.2 galaxy:97.7 quasar:91.0 nebula:93.0 planet:98.5
+[21:38:32] step   4100 loss=0.3584 acc=94.0% lr=2.00e-04 371 img/s [streaming] | star=20170 galaxy=20976 quasar=18347 nebula=2054 planet=8491 | ok=70038 dupImg=7259 conflict=5865 bad=4116 | RAM=798MB
+[21:39:01] step   4200 loss=0.3553 acc=94.1% lr=2.00e-04 373 img/s [streaming] | star=20170 galaxy=20983 quasar=18347 nebula=2054 planet=8491 | ok=70045 dupImg=7265 conflict=5866 bad=4116 | RAM=798MB
+[21:39:29] step   4300 loss=0.3595 acc=94.1% lr=2.00e-04 374 img/s [streaming] | star=20170 galaxy=20983 quasar=18347 nebula=2054 planet=8491 | ok=70045 dupImg=7265 conflict=5866 bad=4116 | RAM=798MB
+[21:39:58] step   4400 loss=0.3604 acc=93.8% lr=2.00e-04 376 img/s [streaming] | star=20170 galaxy=20994 quasar=18347 nebula=2054 planet=8491 | ok=70056 dupImg=7266 conflict=5868 bad=4116 | RAM=798MB
+[21:40:27] step   4500 loss=0.3585 acc=94.0% lr=2.00e-04 377 img/s [streaming] | star=20171 galaxy=20995 quasar=18347 nebula=2054 planet=8491 | ok=70058 dupImg=7271 conflict=5870 bad=4117 | RAM=798MB
+[21:40:56] step   4600 loss=0.3623 acc=94.0% lr=2.00e-04 378 img/s [streaming] | star=20171 galaxy=20995 quasar=18347 nebula=2054 planet=8491 | ok=70058 dupImg=7271 conflict=5870 bad=4117 | RAM=798MB
+[21:41:26] step   4700 loss=0.3550 acc=94.0% lr=2.00e-04 379 img/s [streaming] | star=20171 galaxy=20995 quasar=18347 nebula=2054 planet=8491 | ok=70058 dupImg=7274 conflict=5870 bad=4117 | RAM=798MB
+[21:41:57] step   4800 loss=0.3562 acc=94.1% lr=2.00e-04 379 img/s [streaming] | star=20171 galaxy=21002 quasar=18347 nebula=2055 planet=8491 | ok=70066 dupImg=7288 conflict=5878 bad=4119 | RAM=799MB
+[21:42:26] step   4900 loss=0.3547 acc=94.3% lr=2.00e-04 381 img/s [streaming] | star=20171 galaxy=21002 quasar=18347 nebula=2055 planet=8491 | ok=70066 dupImg=7288 conflict=5878 bad=4119 | RAM=799MB
+[21:42:56] step   5000 loss=0.3539 acc=94.3% lr=2.00e-04 382 img/s [streaming] | star=20171 galaxy=21002 quasar=18347 nebula=2055 planet=8491 | ok=70066 dupImg=7288 conflict=5878 bad=4119 | RAM=799MB
+[21:43:00] EVAL[periodic] step=5000 n=3596 acc=93.05% bacc=93.22% f1=93.03% | star:88.0 galaxy:97.7 quasar:90.9 nebula:91.0 planet:98.5
+[21:43:29] step   5100 loss=0.3496 acc=94.3% lr=2.00e-04 382 img/s [streaming] | star=20171 galaxy=21002 quasar=18347 nebula=2055 planet=8491 | ok=70066 dupImg=7288 conflict=5878 bad=4119 | RAM=799MB
+[21:43:59] step   5200 loss=0.3417 acc=94.7% lr=2.00e-04 382 img/s [streaming] | star=20171 galaxy=21003 quasar=18347 nebula=2055 planet=8491 | ok=70067 dupImg=7290 conflict=5882 bad=4119 | RAM=799MB
+[21:44:28] step   5300 loss=0.3494 acc=94.3% lr=2.00e-04 383 img/s [streaming] | star=20171 galaxy=21005 quasar=18347 nebula=2055 planet=8491 | ok=70069 dupImg=7290 conflict=5882 bad=4119 | RAM=799MB
+[21:44:59] step   5400 loss=0.3489 acc=94.5% lr=2.00e-04 384 img/s [streaming] | star=20172 galaxy=21010 quasar=18347 nebula=2055 planet=8491 | ok=70075 dupImg=7296 conflict=5887 bad=4123 | RAM=799MB
+[21:45:30] step   5500 loss=0.3498 acc=94.4% lr=2.00e-04 384 img/s [streaming] | star=20172 galaxy=21011 quasar=18347 nebula=2055 planet=8491 | ok=70076 dupImg=7298 conflict=5887 bad=4123 | RAM=799MB
+[21:45:59] step   5600 loss=0.3522 acc=94.2% lr=2.00e-04 385 img/s [streaming] | star=20172 galaxy=21011 quasar=18347 nebula=2055 planet=8491 | ok=70076 dupImg=7298 conflict=5887 bad=4123 | RAM=799MB
+[21:46:31] step   5700 loss=0.3573 acc=94.0% lr=2.00e-04 385 img/s [streaming] | star=20172 galaxy=21011 quasar=18347 nebula=2055 planet=8491 | ok=70076 dupImg=7298 conflict=5887 bad=4123 | RAM=799MB
+[21:47:01] step   5800 loss=0.3566 acc=94.0% lr=2.00e-04 386 img/s [streaming] | star=20177 galaxy=21011 quasar=18347 nebula=2055 planet=8491 | ok=70081 dupImg=7302 conflict=5888 bad=4124 | RAM=799MB
+[21:47:30] step   5900 loss=0.3589 acc=93.9% lr=2.00e-04 387 img/s [streaming] | star=20177 galaxy=21011 quasar=18347 nebula=2056 planet=8491 | ok=70082 dupImg=7311 conflict=5891 bad=4125 | RAM=799MB
+[21:47:59] step   6000 loss=0.3512 acc=94.3% lr=2.00e-04 388 img/s [streaming] | star=20178 galaxy=21012 quasar=18347 nebula=2057 planet=8491 | ok=70085 dupImg=7316 conflict=5891 bad=4125 | RAM=799MB
+[21:48:02] EVAL[periodic] step=6000 n=3596 acc=93.33% bacc=93.75% f1=93.42% | star:87.9 galaxy:97.8 quasar:91.9 nebula:93.0 planet:98.1
+[21:48:31] step   6100 loss=0.3478 acc=94.5% lr=2.00e-04 388 img/s [streaming] | star=20178 galaxy=21012 quasar=18347 nebula=2057 planet=8491 | ok=70085 dupImg=7316 conflict=5891 bad=4125 | RAM=799MB
+[21:49:01] step   6200 loss=0.3522 acc=94.3% lr=2.00e-04 389 img/s [streaming] | star=20178 galaxy=21014 quasar=18347 nebula=2058 planet=8491 | ok=70088 dupImg=7317 conflict=5892 bad=4126 | RAM=799MB
+[21:49:31] step   6300 loss=0.3540 acc=94.2% lr=2.00e-04 389 img/s [streaming] | star=20181 galaxy=21016 quasar=18347 nebula=2060 planet=8491 | ok=70095 dupImg=7320 conflict=5896 bad=4127 | RAM=799MB
+[21:50:03] step   6400 loss=0.3491 acc=94.6% lr=2.00e-04 389 img/s [streaming] | star=20181 galaxy=21016 quasar=18347 nebula=2061 planet=8491 | ok=70096 dupImg=7322 conflict=5896 bad=4127 | RAM=799MB
+[21:50:34] step   6500 loss=0.3480 acc=94.6% lr=2.00e-04 390 img/s [streaming] | star=20181 galaxy=21019 quasar=18347 nebula=2062 planet=8491 | ok=70100 dupImg=7326 conflict=5897 bad=4128 | RAM=799MB
+[21:51:03] step   6600 loss=0.3552 acc=94.2% lr=2.00e-04 390 img/s [streaming] | star=20181 galaxy=21020 quasar=18347 nebula=2062 planet=8491 | ok=70101 dupImg=7327 conflict=5898 bad=4128 | RAM=799MB
+[21:51:32] step   6700 loss=0.3432 acc=94.6% lr=2.00e-04 391 img/s [streaming] | star=20181 galaxy=21020 quasar=18347 nebula=2062 planet=8491 | ok=70101 dupImg=7327 conflict=5898 bad=4128 | RAM=799MB
+[21:52:01] step   6800 loss=0.3443 acc=94.6% lr=2.00e-04 392 img/s [streaming] | star=20181 galaxy=21020 quasar=18347 nebula=2062 planet=8491 | ok=70101 dupImg=7327 conflict=5898 bad=4128 | RAM=799MB
+[21:52:29] step   6900 loss=0.3385 acc=94.9% lr=2.00e-04 392 img/s [streaming] | star=20181 galaxy=21020 quasar=18347 nebula=2062 planet=8491 | ok=70101 dupImg=7327 conflict=5898 bad=4128 | RAM=799MB
+[21:52:59] step   7000 loss=0.3401 acc=94.9% lr=2.00e-04 393 img/s [streaming] | star=20181 galaxy=21020 quasar=18347 nebula=2062 planet=8491 | ok=70101 dupImg=7327 conflict=5898 bad=4128 | RAM=799MB
+[21:53:03] EVAL[periodic] step=7000 n=3599 acc=93.36% bacc=93.85% f1=93.64% | star:87.8 galaxy:97.3 quasar:92.4 nebula:93.0 planet:98.7
+[21:53:37] step   7100 loss=0.3450 acc=94.5% lr=2.00e-04 392 img/s [streaming] | star=20181 galaxy=21023 quasar=18347 nebula=2062 planet=8491 | ok=70104 dupImg=7337 conflict=5899 bad=4130 | RAM=799MB
+[21:54:07] step   7200 loss=0.3494 acc=94.4% lr=2.00e-04 392 img/s [streaming] | star=20181 galaxy=21026 quasar=18347 nebula=2063 planet=8491 | ok=70108 dupImg=7345 conflict=5901 bad=4132 | RAM=799MB
+[21:54:36] step   7300 loss=0.3513 acc=94.3% lr=2.00e-04 393 img/s [streaming] | star=20181 galaxy=21026 quasar=18347 nebula=2063 planet=8491 | ok=70108 dupImg=7345 conflict=5901 bad=4132 | RAM=799MB
+[21:55:05] step   7400 loss=0.3449 acc=94.5% lr=2.00e-04 394 img/s [streaming] | star=20181 galaxy=21026 quasar=18347 nebula=2063 planet=8491 | ok=70108 dupImg=7345 conflict=5901 bad=4132 | RAM=799MB
+[21:55:34] step   7500 loss=0.3460 acc=94.5% lr=2.00e-04 394 img/s [streaming] | star=20181 galaxy=21028 quasar=18347 nebula=2063 planet=8491 | ok=70110 dupImg=7348 conflict=5901 bad=4132 | RAM=799MB
+[21:56:04] step   7600 loss=0.3468 acc=94.5% lr=2.00e-04 395 img/s [streaming] | star=20181 galaxy=21029 quasar=18347 nebula=2063 planet=8491 | ok=70111 dupImg=7349 conflict=5901 bad=4132 | RAM=799MB
+[21:56:33] step   7700 loss=0.3423 acc=94.8% lr=2.00e-04 395 img/s [streaming] | star=20181 galaxy=21029 quasar=18347 nebula=2063 planet=8491 | ok=70111 dupImg=7349 conflict=5901 bad=4132 | RAM=799MB
+[21:57:02] step   7800 loss=0.3430 acc=94.5% lr=2.00e-04 396 img/s [streaming] | star=20181 galaxy=21029 quasar=18347 nebula=2063 planet=8491 | ok=70111 dupImg=7349 conflict=5901 bad=4132 | RAM=799MB
+[21:57:32] step   7900 loss=0.3408 acc=94.8% lr=2.00e-04 396 img/s [streaming] | star=20181 galaxy=21029 quasar=18347 nebula=2063 planet=8491 | ok=70111 dupImg=7349 conflict=5901 bad=4132 | RAM=799MB
+[21:58:04] step   8000 loss=0.3428 acc=94.5% lr=2.00e-04 396 img/s [streaming] | star=20182 galaxy=21036 quasar=18347 nebula=2063 planet=8491 | ok=70119 dupImg=7359 conflict=5908 bad=4132 | RAM=799MB
+[21:58:08] EVAL[periodic] step=8000 n=3601 acc=93.22% bacc=93.36% f1=93.02% | star:88.3 galaxy:97.0 quasar:91.9 nebula:91.0 planet:98.5
+[21:58:38] step   8100 loss=0.3394 acc=94.8% lr=2.00e-04 396 img/s [streaming] | star=20182 galaxy=21036 quasar=18347 nebula=2063 planet=8491 | ok=70119 dupImg=7359 conflict=5908 bad=4132 | RAM=799MB
+[21:59:07] step   8200 loss=0.3388 acc=94.7% lr=2.00e-04 396 img/s [streaming] | star=20182 galaxy=21036 quasar=18347 nebula=2063 planet=8491 | ok=70119 dupImg=7359 conflict=5908 bad=4132 | RAM=799MB
+[21:59:39] step   8300 loss=0.3362 acc=95.1% lr=2.00e-04 396 img/s [streaming] | star=20183 galaxy=21038 quasar=18347 nebula=2065 planet=8491 | ok=70124 dupImg=7365 conflict=5912 bad=4132 | RAM=800MB
+[22:00:10] step   8400 loss=0.3371 acc=95.0% lr=2.00e-04 397 img/s [streaming] | star=20184 galaxy=21038 quasar=18347 nebula=2065 planet=8491 | ok=70125 dupImg=7365 conflict=5914 bad=4133 | RAM=800MB
+[22:00:41] step   8500 loss=0.3420 acc=94.5% lr=2.00e-04 397 img/s [streaming] | star=20184 galaxy=21041 quasar=18347 nebula=2067 planet=8491 | ok=70130 dupImg=7371 conflict=5917 bad=4134 | RAM=800MB
+[22:01:12] step   8600 loss=0.3405 acc=94.8% lr=2.00e-04 397 img/s [streaming] | star=20184 galaxy=21041 quasar=18347 nebula=2067 planet=8491 | ok=70130 dupImg=7371 conflict=5917 bad=4134 | RAM=800MB
+[22:01:43] step   8700 loss=0.3442 acc=94.7% lr=2.00e-04 397 img/s [streaming] | star=20184 galaxy=21041 quasar=18347 nebula=2067 planet=8491 | ok=70130 dupImg=7371 conflict=5917 bad=4134 | RAM=800MB
+[22:02:13] step   8800 loss=0.3504 acc=94.3% lr=2.00e-04 397 img/s [streaming] | star=20184 galaxy=21045 quasar=18348 nebula=2067 planet=8492 | ok=70136 dupImg=7375 conflict=5918 bad=4135 | RAM=800MB
+[22:02:43] step   8900 loss=0.3434 acc=94.6% lr=2.00e-04 398 img/s [streaming] | star=20184 galaxy=21045 quasar=18348 nebula=2067 planet=8492 | ok=70136 dupImg=7375 conflict=5918 bad=4135 | RAM=800MB
+[22:03:13] step   9000 loss=0.3360 acc=95.0% lr=2.00e-04 398 img/s [streaming] | star=20184 galaxy=21048 quasar=18348 nebula=2067 planet=8492 | ok=70139 dupImg=7384 conflict=5918 bad=4136 | RAM=800MB
+[22:03:17] EVAL[periodic] step=9000 n=3602 acc=93.31% bacc=93.22% f1=92.91% | star:88.1 galaxy:97.5 quasar:92.1 nebula:90.0 planet:98.3
+[22:03:48] step   9100 loss=0.3422 acc=94.6% lr=2.00e-04 398 img/s [streaming] | star=20184 galaxy=21054 quasar=18348 nebula=2067 planet=8492 | ok=70145 dupImg=7387 conflict=5919 bad=4137 | RAM=800MB
+[22:04:17] step   9200 loss=0.3407 acc=94.7% lr=2.00e-04 398 img/s [streaming] | star=20184 galaxy=21054 quasar=18348 nebula=2071 planet=8492 | ok=70149 dupImg=7390 conflict=5919 bad=4137 | RAM=800MB
+[22:04:46] step   9300 loss=0.3379 acc=94.9% lr=2.00e-04 398 img/s [streaming] | star=20184 galaxy=21056 quasar=18348 nebula=2073 planet=8492 | ok=70153 dupImg=7391 conflict=5921 bad=4138 | RAM=800MB
+[22:05:17] step   9400 loss=0.3350 acc=95.1% lr=2.00e-04 399 img/s [streaming] | star=20184 galaxy=21056 quasar=18348 nebula=2073 planet=8492 | ok=70153 dupImg=7391 conflict=5921 bad=4138 | RAM=800MB
+[22:05:48] step   9500 loss=0.3343 acc=94.9% lr=2.00e-04 399 img/s [streaming] | star=20184 galaxy=21065 quasar=18348 nebula=2073 planet=8492 | ok=70162 dupImg=7401 conflict=5926 bad=4138 | RAM=800MB
+[22:06:18] step   9600 loss=0.3316 acc=95.1% lr=2.00e-04 399 img/s [streaming] | star=20184 galaxy=21065 quasar=18348 nebula=2076 planet=8492 | ok=70165 dupImg=7403 conflict=5926 bad=4138 | RAM=800MB
+[22:06:47] step   9700 loss=0.3319 acc=94.9% lr=2.00e-04 399 img/s [streaming] | star=20186 galaxy=21068 quasar=18348 nebula=2081 planet=8492 | ok=70175 dupImg=7407 conflict=5928 bad=4138 | RAM=800MB
+[22:07:16] step   9800 loss=0.3376 acc=95.1% lr=2.00e-04 400 img/s [streaming] | star=20186 galaxy=21069 quasar=18348 nebula=2081 planet=8492 | ok=70176 dupImg=7407 conflict=5928 bad=4140 | RAM=800MB
+[22:07:44] step   9900 loss=0.3363 acc=94.8% lr=2.00e-04 400 img/s [streaming] | star=20186 galaxy=21069 quasar=18348 nebula=2081 planet=8492 | ok=70176 dupImg=7407 conflict=5928 bad=4140 | RAM=800MB
+[22:08:13] step  10000 loss=0.3298 acc=95.0% lr=2.00e-04 401 img/s [streaming] | star=20186 galaxy=21069 quasar=18348 nebula=2081 planet=8492 | ok=70176 dupImg=7407 conflict=5928 bad=4140 | RAM=800MB
+[22:08:16] EVAL[periodic] step=10000 n=3603 acc=93.23% bacc=93.21% f1=92.96% | star:88.3 galaxy:97.6 quasar:91.3 nebula:90.1 planet:98.7
+[22:08:45] step  10100 loss=0.3340 acc=94.9% lr=2.00e-04 401 img/s [streaming] | star=20186 galaxy=21069 quasar=18348 nebula=2081 planet=8492 | ok=70176 dupImg=7407 conflict=5928 bad=4140 | RAM=800MB
+[22:09:13] step  10200 loss=0.3317 acc=95.2% lr=2.00e-04 401 img/s [streaming] | star=20186 galaxy=21069 quasar=18348 nebula=2081 planet=8492 | ok=70176 dupImg=7407 conflict=5928 bad=4140 | RAM=800MB
+[22:09:42] step  10300 loss=0.3404 acc=94.7% lr=2.00e-04 402 img/s [streaming] | star=20186 galaxy=21069 quasar=18348 nebula=2083 planet=8492 | ok=70178 dupImg=7410 conflict=5928 bad=4140 | RAM=800MB
+[22:10:12] step  10400 loss=0.3392 acc=94.9% lr=2.00e-04 402 img/s [streaming] | star=20187 galaxy=21076 quasar=18348 nebula=2084 planet=8492 | ok=70187 dupImg=7420 conflict=5929 bad=4144 | RAM=801MB
+[22:10:41] step  10500 loss=0.3272 acc=95.2% lr=2.00e-04 402 img/s [streaming] | star=20187 galaxy=21076 quasar=18348 nebula=2085 planet=8492 | ok=70188 dupImg=7421 conflict=5929 bad=4144 | RAM=801MB
+[22:11:10] step  10600 loss=0.3421 acc=94.8% lr=2.00e-04 402 img/s [streaming] | star=20187 galaxy=21078 quasar=18348 nebula=2085 planet=8492 | ok=70190 dupImg=7425 conflict=5932 bad=4145 | RAM=801MB
+[22:11:38] step  10700 loss=0.3406 acc=94.7% lr=2.00e-04 403 img/s [streaming] | star=20187 galaxy=21078 quasar=18348 nebula=2085 planet=8492 | ok=70190 dupImg=7425 conflict=5932 bad=4145 | RAM=801MB
+[22:12:07] step  10800 loss=0.3367 acc=94.9% lr=2.00e-04 403 img/s [streaming] | star=20187 galaxy=21081 quasar=18350 nebula=2085 planet=8492 | ok=70195 dupImg=7427 conflict=5934 bad=4145 | RAM=801MB
+[22:12:35] step  10900 loss=0.3341 acc=95.1% lr=2.00e-04 404 img/s [streaming] | star=20187 galaxy=21081 quasar=18350 nebula=2085 planet=8492 | ok=70195 dupImg=7427 conflict=5934 bad=4145 | RAM=801MB
+[22:13:05] step  11000 loss=0.3343 acc=94.9% lr=2.00e-04 404 img/s [streaming] | star=20187 galaxy=21084 quasar=18350 nebula=2086 planet=8492 | ok=70199 dupImg=7431 conflict=5934 bad=4146 | RAM=801MB
+[22:13:08] EVAL[periodic] step=11000 n=3604 acc=93.62% bacc=93.68% f1=93.59% | star:89.8 galaxy:98.0 quasar:90.6 nebula:91.1 planet:98.9
+[22:13:37] step  11100 loss=0.3337 acc=95.1% lr=2.00e-04 404 img/s [streaming] | star=20187 galaxy=21085 quasar=18350 nebula=2086 planet=8492 | ok=70200 dupImg=7433 conflict=5935 bad=4148 | RAM=801MB
+[22:14:06] step  11200 loss=0.3398 acc=94.5% lr=2.00e-04 404 img/s [streaming] | star=20188 galaxy=21085 quasar=18350 nebula=2086 planet=8492 | ok=70201 dupImg=7433 conflict=5937 bad=4148 | RAM=801MB
+[22:14:34] step  11300 loss=0.3311 acc=95.0% lr=2.00e-04 405 img/s [streaming] | star=20188 galaxy=21085 quasar=18350 nebula=2086 planet=8492 | ok=70201 dupImg=7434 conflict=5937 bad=4148 | RAM=801MB
+[22:15:02] step  11400 loss=0.3351 acc=94.9% lr=2.00e-04 405 img/s [streaming] | star=20188 galaxy=21085 quasar=18350 nebula=2086 planet=8492 | ok=70201 dupImg=7434 conflict=5937 bad=4148 | RAM=801MB
+[22:15:31] step  11500 loss=0.3351 acc=94.9% lr=2.00e-04 405 img/s [streaming] | star=20188 galaxy=21089 quasar=18350 nebula=2086 planet=8492 | ok=70205 dupImg=7437 conflict=5938 bad=4148 | RAM=801MB
+[22:16:00] step  11600 loss=0.3334 acc=95.0% lr=2.00e-04 406 img/s [streaming] | star=20188 galaxy=21089 quasar=18350 nebula=2086 planet=8492 | ok=70205 dupImg=7437 conflict=5938 bad=4148 | RAM=801MB
+[22:16:28] step  11700 loss=0.3294 acc=95.2% lr=2.00e-04 406 img/s [streaming] | star=20188 galaxy=21093 quasar=18350 nebula=2086 planet=8492 | ok=70209 dupImg=7439 conflict=5939 bad=4148 | RAM=801MB
+[22:16:57] step  11800 loss=0.3298 acc=95.3% lr=2.00e-04 406 img/s [streaming] | star=20188 galaxy=21095 quasar=18350 nebula=2086 planet=8492 | ok=70211 dupImg=7441 conflict=5939 bad=4148 | RAM=801MB
+[22:17:26] step  11900 loss=0.3266 acc=95.4% lr=2.00e-04 406 img/s [streaming] | star=20188 galaxy=21097 quasar=18350 nebula=2086 planet=8492 | ok=70213 dupImg=7441 conflict=5939 bad=4148 | RAM=801MB
+[22:17:54] step  12000 loss=0.3261 acc=95.4% lr=2.00e-04 407 img/s [streaming] | star=20188 galaxy=21099 quasar=18350 nebula=2086 planet=8492 | ok=70215 dupImg=7441 conflict=5940 bad=4149 | RAM=801MB
+[22:17:57] EVAL[periodic] step=12000 n=3604 acc=93.59% bacc=93.48% f1=93.32% | star:89.4 galaxy:97.4 quasar:91.7 nebula:90.1 planet:98.7
+[22:18:26] step  12100 loss=0.3308 acc=95.2% lr=2.00e-04 407 img/s [streaming] | star=20188 galaxy=21099 quasar=18350 nebula=2086 planet=8492 | ok=70215 dupImg=7441 conflict=5940 bad=4149 | RAM=801MB
+[22:18:54] step  12200 loss=0.3210 acc=95.6% lr=2.00e-04 407 img/s [streaming] | star=20188 galaxy=21099 quasar=18350 nebula=2086 planet=8492 | ok=70215 dupImg=7441 conflict=5940 bad=4149 | RAM=801MB
+[22:19:23] step  12300 loss=0.3254 acc=95.4% lr=2.00e-04 407 img/s [streaming] | star=20188 galaxy=21102 quasar=18350 nebula=2087 planet=8492 | ok=70219 dupImg=7448 conflict=5941 bad=4149 | RAM=801MB
+[22:19:51] step  12400 loss=0.3275 acc=95.4% lr=2.00e-04 408 img/s [streaming] | star=20188 galaxy=21102 quasar=18350 nebula=2087 planet=8492 | ok=70219 dupImg=7448 conflict=5941 bad=4149 | RAM=801MB
+[22:20:20] step  12500 loss=0.3306 acc=95.2% lr=2.00e-04 408 img/s [streaming] | star=20188 galaxy=21102 quasar=18350 nebula=2089 planet=8492 | ok=70221 dupImg=7449 conflict=5941 bad=4149 | RAM=801MB
+[22:20:49] step  12600 loss=0.3388 acc=94.7% lr=2.00e-04 408 img/s [streaming] | star=20190 galaxy=21105 quasar=18351 nebula=2089 planet=8494 | ok=70229 dupImg=7454 conflict=5945 bad=4149 | RAM=801MB
+[22:21:17] step  12700 loss=0.3402 acc=94.8% lr=2.00e-04 409 img/s [streaming] | star=20190 galaxy=21105 quasar=18351 nebula=2089 planet=8494 | ok=70229 dupImg=7454 conflict=5945 bad=4149 | RAM=801MB
+[22:21:45] step  12800 loss=0.3308 acc=95.3% lr=2.00e-04 409 img/s [streaming] | star=20190 galaxy=21105 quasar=18351 nebula=2089 planet=8494 | ok=70229 dupImg=7454 conflict=5945 bad=4149 | RAM=801MB
+[22:22:16] step  12900 loss=0.3325 acc=95.1% lr=2.00e-04 409 img/s [streaming] | star=20190 galaxy=21106 quasar=18351 nebula=2091 planet=8495 | ok=70233 dupImg=7457 conflict=5947 bad=4149 | RAM=801MB
+[22:22:44] step  13000 loss=0.3334 acc=95.1% lr=2.00e-04 409 img/s [streaming] | star=20190 galaxy=21107 quasar=18351 nebula=2091 planet=8495 | ok=70234 dupImg=7458 conflict=5948 bad=4149 | RAM=801MB
+[22:22:48] EVAL[periodic] step=13000 n=3604 acc=93.45% bacc=93.42% f1=93.07% | star:88.2 galaxy:97.1 quasar:92.8 nebula:90.1 planet:98.9
+[22:23:16] step  13100 loss=0.3327 acc=95.0% lr=2.00e-04 409 img/s [streaming] | star=20190 galaxy=21111 quasar=18351 nebula=2091 planet=8495 | ok=70238 dupImg=7462 conflict=5951 bad=4150 | RAM=801MB
+[22:23:45] step  13200 loss=0.3311 acc=95.1% lr=2.00e-04 409 img/s [streaming] | star=20190 galaxy=21111 quasar=18351 nebula=2091 planet=8495 | ok=70238 dupImg=7462 conflict=5951 bad=4150 | RAM=801MB
+[22:24:13] step  13300 loss=0.3320 acc=94.9% lr=2.00e-04 410 img/s [streaming] | star=20190 galaxy=21111 quasar=18351 nebula=2091 planet=8495 | ok=70238 dupImg=7462 conflict=5951 bad=4150 | RAM=801MB
+[22:24:42] step  13400 loss=0.3330 acc=95.0% lr=2.00e-04 410 img/s [streaming] | star=20191 galaxy=21117 quasar=18351 nebula=2093 planet=8495 | ok=70247 dupImg=7473 conflict=5962 bad=4151 | RAM=802MB
+[22:25:11] step  13500 loss=0.3350 acc=95.1% lr=2.00e-04 410 img/s [streaming] | star=20199 galaxy=21126 quasar=18352 nebula=2097 planet=8495 | ok=70269 dupImg=7509 conflict=5972 bad=4152 | RAM=802MB
+[22:25:40] step  13600 loss=0.3369 acc=95.1% lr=2.00e-04 410 img/s [streaming] | star=20199 galaxy=21126 quasar=18352 nebula=2097 planet=8495 | ok=70269 dupImg=7511 conflict=5973 bad=4152 | RAM=802MB
+[22:26:08] step  13700 loss=0.3340 acc=95.3% lr=2.00e-04 411 img/s [streaming] | star=20199 galaxy=21130 quasar=18352 nebula=2097 planet=8495 | ok=70273 dupImg=7527 conflict=5975 bad=4152 | RAM=802MB
+[22:26:37] step  13800 loss=0.3265 acc=95.4% lr=2.00e-04 411 img/s [streaming] | star=20203 galaxy=21132 quasar=18352 nebula=2101 planet=8495 | ok=70283 dupImg=7535 conflict=5981 bad=4152 | RAM=802MB
+[22:27:06] step  13900 loss=0.3244 acc=95.7% lr=2.00e-04 411 img/s [streaming] | star=20203 galaxy=21133 quasar=18352 nebula=2101 planet=8500 | ok=70289 dupImg=7539 conflict=5983 bad=4152 | RAM=802MB
+[22:27:35] step  14000 loss=0.3212 acc=95.7% lr=2.00e-04 411 img/s [streaming] | star=20205 galaxy=21138 quasar=18354 nebula=2102 planet=8502 | ok=70301 dupImg=7556 conflict=6000 bad=4153 | RAM=803MB
+[22:27:38] EVAL[periodic] step=14000 n=3605 acc=93.48% bacc=93.21% f1=93.20% | star:89.3 galaxy:97.5 quasar:91.4 nebula:89.1 planet:98.7
+[22:28:07] step  14100 loss=0.3316 acc=95.1% lr=2.00e-04 411 img/s [streaming] | star=20205 galaxy=21138 quasar=18354 nebula=2102 planet=8502 | ok=70301 dupImg=7556 conflict=6000 bad=4153 | RAM=803MB
+[22:28:36] step  14200 loss=0.3281 acc=95.2% lr=2.00e-04 411 img/s [streaming] | star=20210 galaxy=21141 quasar=18354 nebula=2104 planet=8502 | ok=70311 dupImg=7562 conflict=6007 bad=4154 | RAM=803MB
+[22:29:04] step  14300 loss=0.3287 acc=95.1% lr=2.00e-04 412 img/s [streaming] | star=20210 galaxy=21141 quasar=18354 nebula=2104 planet=8502 | ok=70311 dupImg=7568 conflict=6014 bad=4154 | RAM=803MB
+[22:29:33] step  14400 loss=0.3293 acc=95.2% lr=2.00e-04 412 img/s [streaming] | star=20210 galaxy=21141 quasar=18354 nebula=2104 planet=8502 | ok=70311 dupImg=7568 conflict=6014 bad=4154 | RAM=803MB
+[22:30:02] step  14500 loss=0.3191 acc=95.7% lr=2.00e-04 412 img/s [streaming] | star=20210 galaxy=21146 quasar=18354 nebula=2104 planet=8502 | ok=70316 dupImg=7572 conflict=6021 bad=4155 | RAM=803MB
+[22:30:31] step  14600 loss=0.3227 acc=95.6% lr=2.00e-04 412 img/s [streaming] | star=20210 galaxy=21150 quasar=18354 nebula=2105 planet=8502 | ok=70321 dupImg=7577 conflict=6025 bad=4155 | RAM=803MB
+[22:30:59] step  14700 loss=0.3302 acc=95.1% lr=2.00e-04 413 img/s [streaming] | star=20210 galaxy=21152 quasar=18354 nebula=2105 planet=8503 | ok=70324 dupImg=7602 conflict=6029 bad=4156 | RAM=803MB
+[22:31:28] step  14800 loss=0.3267 acc=95.4% lr=2.00e-04 413 img/s [streaming] | star=20210 galaxy=21162 quasar=18355 nebula=2105 planet=8504 | ok=70336 dupImg=7606 conflict=6036 bad=4156 | RAM=803MB
+[22:31:56] step  14900 loss=0.3264 acc=95.3% lr=2.00e-04 413 img/s [streaming] | star=20210 galaxy=21174 quasar=18356 nebula=2105 planet=8504 | ok=70349 dupImg=7614 conflict=6044 bad=4156 | RAM=803MB
+[22:32:25] step  15000 loss=0.3375 acc=94.7% lr=2.00e-04 413 img/s [streaming] | star=20210 galaxy=21186 quasar=18356 nebula=2105 planet=8505 | ok=70362 dupImg=7621 conflict=6048 bad=4157 | RAM=804MB
+[22:32:29] EVAL[periodic] step=15000 n=3609 acc=93.46% bacc=93.60% f1=93.34% | star:87.7 galaxy:97.4 quasar:92.8 nebula:91.1 planet:98.9
+[22:32:57] step  15100 loss=0.3256 acc=95.4% lr=2.00e-04 413 img/s [streaming] | star=20210 galaxy=21187 quasar=18356 nebula=2105 planet=8505 | ok=70363 dupImg=7622 conflict=6049 bad=4157 | RAM=804MB
+[22:33:26] step  15200 loss=0.3265 acc=95.5% lr=2.00e-04 413 img/s [streaming] | star=20212 galaxy=21190 quasar=18356 nebula=2106 planet=8505 | ok=70369 dupImg=7632 conflict=6050 bad=4157 | RAM=804MB
+[22:33:55] step  15300 loss=0.3289 acc=95.2% lr=2.00e-04 413 img/s [streaming] | star=20213 galaxy=21192 quasar=18358 nebula=2106 planet=8505 | ok=70374 dupImg=7637 conflict=6057 bad=4157 | RAM=804MB
+[22:34:23] step  15400 loss=0.3261 acc=95.4% lr=2.00e-04 414 img/s [streaming] | star=20219 galaxy=21205 quasar=18358 nebula=2109 planet=8506 | ok=70397 dupImg=7651 conflict=6066 bad=4160 | RAM=804MB
+[22:34:52] step  15500 loss=0.3329 acc=95.1% lr=2.00e-04 414 img/s [streaming] | star=20225 galaxy=21221 quasar=18360 nebula=2118 planet=8507 | ok=70431 dupImg=7693 conflict=6106 bad=4160 | RAM=805MB
+[22:35:21] step  15600 loss=0.3352 acc=95.1% lr=2.00e-04 414 img/s [streaming] | star=20228 galaxy=21229 quasar=18360 nebula=2122 planet=8509 | ok=70448 dupImg=7713 conflict=6120 bad=4161 | RAM=805MB
+[22:35:49] step  15700 loss=0.3324 acc=95.1% lr=2.00e-04 414 img/s [streaming] | star=20230 galaxy=21231 quasar=18360 nebula=2123 planet=8509 | ok=70453 dupImg=7723 conflict=6128 bad=4161 | RAM=805MB
+[22:36:18] step  15800 loss=0.3307 acc=95.2% lr=2.00e-04 414 img/s [streaming] | star=20231 galaxy=21232 quasar=18360 nebula=2123 planet=8509 | ok=70455 dupImg=7729 conflict=6133 bad=4161 | RAM=805MB
+[22:36:46] step  15900 loss=0.3252 acc=95.6% lr=2.00e-04 415 img/s [streaming] | star=20238 galaxy=21235 quasar=18360 nebula=2126 planet=8509 | ok=70468 dupImg=7740 conflict=6138 bad=4161 | RAM=805MB
+[22:37:15] step  16000 loss=0.3265 acc=95.5% lr=2.00e-04 415 img/s [streaming] | star=20239 galaxy=21237 quasar=18360 nebula=2126 planet=8509 | ok=70471 dupImg=7742 conflict=6142 bad=4161 | RAM=805MB
+[22:37:19] EVAL[periodic] step=16000 n=3615 acc=93.55% bacc=93.62% f1=93.21% | star:88.1 galaxy:97.6 quasar:92.8 nebula:91.1 planet:98.5
+[22:37:47] step  16100 loss=0.3226 acc=95.4% lr=2.00e-04 415 img/s [streaming] | star=20240 galaxy=21239 quasar=18360 nebula=2126 planet=8509 | ok=70474 dupImg=7753 conflict=6151 bad=4162 | RAM=805MB
+[22:38:16] step  16200 loss=0.3238 acc=95.5% lr=2.00e-04 415 img/s [streaming] | star=20240 galaxy=21240 quasar=18360 nebula=2126 planet=8509 | ok=70475 dupImg=7758 conflict=6157 bad=4162 | RAM=805MB
+[22:38:44] step  16300 loss=0.3295 acc=95.0% lr=2.00e-04 415 img/s [streaming] | star=20240 galaxy=21240 quasar=18360 nebula=2126 planet=8509 | ok=70475 dupImg=7758 conflict=6157 bad=4162 | RAM=805MB
+[22:39:13] step  16400 loss=0.3296 acc=95.1% lr=2.00e-04 415 img/s [streaming] | star=20241 galaxy=21246 quasar=18360 nebula=2126 planet=8509 | ok=70482 dupImg=7772 conflict=6161 bad=4162 | RAM=805MB
+[22:39:42] step  16500 loss=0.3261 acc=95.3% lr=2.00e-04 415 img/s [streaming] | star=20242 galaxy=21250 quasar=18360 nebula=2127 planet=8509 | ok=70488 dupImg=7795 conflict=6168 bad=4162 | RAM=806MB
+[22:40:10] step  16600 loss=0.3185 acc=95.6% lr=2.00e-04 416 img/s [streaming] | star=20242 galaxy=21251 quasar=18360 nebula=2127 planet=8509 | ok=70489 dupImg=7801 conflict=6171 bad=4162 | RAM=806MB
+[22:40:39] step  16700 loss=0.3252 acc=95.4% lr=2.00e-04 416 img/s [streaming] | star=20243 galaxy=21252 quasar=18361 nebula=2127 planet=8509 | ok=70492 dupImg=7804 conflict=6175 bad=4162 | RAM=806MB
+[22:41:07] step  16800 loss=0.3277 acc=95.2% lr=2.00e-04 416 img/s [streaming] | star=20243 galaxy=21254 quasar=18361 nebula=2127 planet=8509 | ok=70494 dupImg=7810 conflict=6180 bad=4162 | RAM=806MB
+[22:41:36] step  16900 loss=0.3198 acc=95.7% lr=2.00e-04 416 img/s [streaming] | star=20244 galaxy=21258 quasar=18361 nebula=2127 planet=8509 | ok=70499 dupImg=7827 conflict=6192 bad=4162 | RAM=806MB
+[22:42:05] step  17000 loss=0.3181 acc=95.8% lr=2.00e-04 416 img/s [streaming] | star=20245 galaxy=21258 quasar=18361 nebula=2127 planet=8509 | ok=70500 dupImg=7828 conflict=6192 bad=4162 | RAM=806MB
+[22:42:09] EVAL[periodic] step=17000 n=3617 acc=93.50% bacc=93.53% f1=93.47% | star:87.9 galaxy:97.8 quasar:92.8 nebula:91.1 planet:98.1
+[22:42:37] step  17100 loss=0.3263 acc=95.4% lr=2.00e-04 416 img/s [streaming] | star=20246 galaxy=21262 quasar=18361 nebula=2127 planet=8509 | ok=70505 dupImg=7850 conflict=6202 bad=4162 | RAM=806MB
+[22:43:06] step  17200 loss=0.3208 acc=95.4% lr=2.00e-04 416 img/s [streaming] | star=20246 galaxy=21262 quasar=18361 nebula=2127 planet=8509 | ok=70505 dupImg=7858 conflict=6204 bad=4162 | RAM=806MB
+[22:43:34] step  17300 loss=0.3203 acc=95.7% lr=2.00e-04 417 img/s [streaming] | star=20246 galaxy=21262 quasar=18361 nebula=2128 planet=8509 | ok=70506 dupImg=7864 conflict=6204 bad=4162 | RAM=806MB
+[22:44:03] step  17400 loss=0.3241 acc=95.5% lr=2.00e-04 417 img/s [streaming] | star=20247 galaxy=21263 quasar=18361 nebula=2128 planet=8509 | ok=70508 dupImg=7885 conflict=6209 bad=4162 | RAM=806MB
+[22:44:31] step  17500 loss=0.3292 acc=95.1% lr=2.00e-04 417 img/s [streaming] | star=20247 galaxy=21266 quasar=18361 nebula=2128 planet=8509 | ok=70511 dupImg=7892 conflict=6210 bad=4162 | RAM=806MB
+[22:45:00] step  17600 loss=0.3236 acc=95.5% lr=2.00e-04 417 img/s [streaming] | star=20247 galaxy=21269 quasar=18361 nebula=2128 planet=8509 | ok=70514 dupImg=7902 conflict=6218 bad=4162 | RAM=806MB
+[22:45:28] step  17700 loss=0.3256 acc=95.3% lr=2.00e-04 417 img/s [streaming] | star=20247 galaxy=21269 quasar=18361 nebula=2128 planet=8509 | ok=70514 dupImg=7902 conflict=6218 bad=4162 | RAM=806MB
+[22:45:57] step  17800 loss=0.3241 acc=95.3% lr=2.00e-04 417 img/s [streaming] | star=20247 galaxy=21270 quasar=18361 nebula=2128 planet=8509 | ok=70515 dupImg=7910 conflict=6221 bad=4162 | RAM=806MB
+[22:46:25] step  17900 loss=0.3267 acc=95.1% lr=2.00e-04 418 img/s [streaming] | star=20247 galaxy=21270 quasar=18361 nebula=2128 planet=8509 | ok=70515 dupImg=7910 conflict=6221 bad=4162 | RAM=806MB
+[22:46:53] step  18000 loss=0.3195 acc=95.5% lr=2.00e-04 418 img/s [streaming] | star=20247 galaxy=21272 quasar=18361 nebula=2128 planet=8509 | ok=70517 dupImg=7915 conflict=6224 bad=4162 | RAM=806MB
+[22:46:57] EVAL[periodic] step=18000 n=3617 acc=93.56% bacc=93.73% f1=93.52% | star:88.2 galaxy:97.8 quasar:92.7 nebula:92.1 planet:97.9
+[22:47:26] step  18100 loss=0.3175 acc=95.6% lr=2.00e-04 418 img/s [streaming] | star=20249 galaxy=21275 quasar=18361 nebula=2128 planet=8509 | ok=70522 dupImg=7934 conflict=6227 bad=4162 | RAM=806MB
+[22:47:54] step  18200 loss=0.3222 acc=95.5% lr=2.00e-04 418 img/s [streaming] | star=20249 galaxy=21275 quasar=18361 nebula=2128 planet=8509 | ok=70522 dupImg=7934 conflict=6227 bad=4162 | RAM=806MB
+[22:48:26] step  18300 loss=0.3238 acc=95.4% lr=2.00e-04 418 img/s [streaming] | star=20249 galaxy=21277 quasar=18361 nebula=2128 planet=8509 | ok=70524 dupImg=7941 conflict=6229 bad=4162 | RAM=806MB
+[22:48:56] step  18400 loss=0.3229 acc=95.5% lr=2.00e-04 418 img/s [streaming] | star=20250 galaxy=21277 quasar=18361 nebula=2128 planet=8509 | ok=70525 dupImg=7945 conflict=6237 bad=4162 | RAM=806MB
+[22:49:27] step  18500 loss=0.3259 acc=95.4% lr=2.00e-04 418 img/s [streaming] | star=20250 galaxy=21290 quasar=18361 nebula=2128 planet=8509 | ok=70538 dupImg=7959 conflict=6245 bad=4163 | RAM=806MB
+[22:49:58] step  18600 loss=0.3276 acc=95.1% lr=2.00e-04 418 img/s [streaming] | star=20250 galaxy=21293 quasar=18361 nebula=2128 planet=8509 | ok=70541 dupImg=7974 conflict=6252 bad=4163 | RAM=806MB
+[22:49:59] streaming finished -> cosine decay for 5000 steps | star=20250 galaxy=21293 quasar=18361 nebula=2128 planet=8509 | ok=70541 dupImg=7974 conflict=6253 bad=4163 | RAM=806MB
+[22:49:59] source summary: {"decals_galaxies": {"attempted": 11137, "error": null}, "sdss_galaxy": {"attempted": 8526, "error": null}, "nasa_galaxy": {"attempted": 550, "error": null}, "commons_galaxy": {"attempted": 4156, "error": null}, "sdss_star_bright": {"attempted": 7003, "error": null}, "sdss_star_crowded": {"attempted": 6102, "error": null}, "sdss_star_faint": {"attempted": 9572, "error": null}, "nasa_star": {"attempted": 83, "error": null}, "sdss_quasar": {"attempted": 22799, "error": null}, "nasa_quasar": {"attempted": 17, "error": null}, "nasa_nebula": {"attempted": 300, "error": null}, "commons_nebula": {"attempted": 3508, "error": null}, "nasa_planet": {"attempted": 14102, "error": null}, "esa_hubble": {"attempted": 2062, "error": null}}
+[22:50:27] step  18700 loss=0.3202 acc=95.6% lr=2.00e-04 418 img/s [decay] | star=20250 galaxy=21293 quasar=18361 nebula=2128 planet=8509 | ok=70541 dupImg=7974 conflict=6253 bad=4163 | RAM=806MB
+[22:50:56] step  18800 loss=0.3155 acc=95.8% lr=1.99e-04 418 img/s [decay] | star=20250 galaxy=21293 quasar=18361 nebula=2128 planet=8509 | ok=70541 dupImg=7974 conflict=6253 bad=4163 | RAM=806MB
+[22:51:24] step  18900 loss=0.3203 acc=95.6% lr=1.98e-04 418 img/s [decay] | star=20250 galaxy=21293 quasar=18361 nebula=2128 planet=8509 | ok=70541 dupImg=7974 conflict=6253 bad=4163 | RAM=806MB
+[22:51:52] step  19000 loss=0.3236 acc=95.5% lr=1.97e-04 418 img/s [decay] | star=20250 galaxy=21293 quasar=18361 nebula=2128 planet=8509 | ok=70541 dupImg=7974 conflict=6253 bad=4163 | RAM=806MB
+[22:51:56] EVAL[periodic] step=19000 n=3620 acc=93.43% bacc=93.38% f1=93.27% | star:88.1 galaxy:97.6 quasar:92.1 nebula:90.1 planet:98.9
+[22:52:24] step  19100 loss=0.3134 acc=96.0% lr=1.95e-04 418 img/s [decay] | star=20250 galaxy=21293 quasar=18361 nebula=2128 planet=8509 | ok=70541 dupImg=7974 conflict=6253 bad=4163 | RAM=806MB
+[22:52:52] step  19200 loss=0.3225 acc=95.3% lr=1.93e-04 418 img/s [decay] | star=20250 galaxy=21293 quasar=18361 nebula=2128 planet=8509 | ok=70541 dupImg=7974 conflict=6253 bad=4163 | RAM=806MB
+[22:53:21] step  19300 loss=0.3270 acc=95.3% lr=1.91e-04 419 img/s [decay] | star=20250 galaxy=21293 quasar=18361 nebula=2128 planet=8509 | ok=70541 dupImg=7974 conflict=6253 bad=4163 | RAM=806MB
+[22:53:51] step  19400 loss=0.3166 acc=95.9% lr=1.88e-04 419 img/s [decay] | star=20250 galaxy=21293 quasar=18361 nebula=2128 planet=8509 | ok=70541 dupImg=7974 conflict=6253 bad=4163 | RAM=806MB
+[22:54:21] step  19500 loss=0.3151 acc=95.7% lr=1.85e-04 419 img/s [decay] | star=20250 galaxy=21293 quasar=18361 nebula=2128 planet=8509 | ok=70541 dupImg=7974 conflict=6253 bad=4163 | RAM=806MB
+[22:54:52] step  19600 loss=0.3098 acc=96.0% lr=1.81e-04 419 img/s [decay] | star=20250 galaxy=21293 quasar=18361 nebula=2128 planet=8509 | ok=70541 dupImg=7974 conflict=6253 bad=4163 | RAM=806MB
+[22:55:25] step  19700 loss=0.3133 acc=95.8% lr=1.78e-04 418 img/s [decay] | star=20250 galaxy=21293 quasar=18361 nebula=2128 planet=8509 | ok=70541 dupImg=7974 conflict=6253 bad=4163 | RAM=806MB
+[22:55:54] step  19800 loss=0.3178 acc=95.8% lr=1.74e-04 419 img/s [decay] | star=20250 galaxy=21293 quasar=18361 nebula=2128 planet=8509 | ok=70541 dupImg=7974 conflict=6253 bad=4163 | RAM=806MB
+[22:56:23] step  19900 loss=0.3178 acc=95.7% lr=1.69e-04 419 img/s [decay] | star=20250 galaxy=21293 quasar=18361 nebula=2128 planet=8509 | ok=70541 dupImg=7974 conflict=6253 bad=4163 | RAM=806MB
+[22:56:52] step  20000 loss=0.3036 acc=96.4% lr=1.65e-04 419 img/s [decay] | star=20250 galaxy=21293 quasar=18361 nebula=2128 planet=8509 | ok=70541 dupImg=7974 conflict=6253 bad=4163 | RAM=806MB
+[22:56:56] EVAL[periodic] step=20000 n=3620 acc=93.29% bacc=93.42% f1=93.51% | star:87.6 galaxy:97.6 quasar:92.3 nebula:91.1 planet:98.5
+[22:57:25] step  20100 loss=0.3104 acc=96.2% lr=1.60e-04 419 img/s [decay] | star=20250 galaxy=21293 quasar=18361 nebula=2128 planet=8509 | ok=70541 dupImg=7974 conflict=6253 bad=4163 | RAM=806MB
+[22:57:53] step  20200 loss=0.3129 acc=95.9% lr=1.55e-04 419 img/s [decay] | star=20250 galaxy=21293 quasar=18361 nebula=2128 planet=8509 | ok=70541 dupImg=7974 conflict=6253 bad=4163 | RAM=806MB
+[22:58:22] step  20300 loss=0.3111 acc=96.1% lr=1.49e-04 419 img/s [decay] | star=20250 galaxy=21293 quasar=18361 nebula=2128 planet=8509 | ok=70541 dupImg=7974 conflict=6253 bad=4163 | RAM=806MB
+[22:58:51] step  20400 loss=0.3105 acc=96.0% lr=1.44e-04 419 img/s [decay] | star=20250 galaxy=21293 quasar=18361 nebula=2128 planet=8509 | ok=70541 dupImg=7974 conflict=6253 bad=4163 | RAM=806MB
+[22:59:20] step  20500 loss=0.3114 acc=95.9% lr=1.38e-04 419 img/s [decay] | star=20250 galaxy=21293 quasar=18361 nebula=2128 planet=8509 | ok=70541 dupImg=7974 conflict=6253 bad=4163 | RAM=806MB
+[22:59:49] step  20600 loss=0.3041 acc=96.2% lr=1.32e-04 419 img/s [decay] | star=20250 galaxy=21293 quasar=18361 nebula=2128 planet=8509 | ok=70541 dupImg=7974 conflict=6253 bad=4163 | RAM=806MB
+[23:00:18] step  20700 loss=0.3139 acc=95.8% lr=1.26e-04 419 img/s [decay] | star=20250 galaxy=21293 quasar=18361 nebula=2128 planet=8509 | ok=70541 dupImg=7974 conflict=6253 bad=4163 | RAM=806MB
+[23:00:47] step  20800 loss=0.3089 acc=95.8% lr=1.20e-04 419 img/s [decay] | star=20250 galaxy=21293 quasar=18361 nebula=2128 planet=8509 | ok=70541 dupImg=7974 conflict=6253 bad=4163 | RAM=806MB
+[23:01:15] step  20900 loss=0.3090 acc=95.9% lr=1.14e-04 420 img/s [decay] | star=20250 galaxy=21293 quasar=18361 nebula=2128 planet=8509 | ok=70541 dupImg=7974 conflict=6253 bad=4163 | RAM=806MB
+[23:01:45] step  21000 loss=0.3091 acc=95.8% lr=1.08e-04 420 img/s [decay] | star=20250 galaxy=21293 quasar=18361 nebula=2128 planet=8509 | ok=70541 dupImg=7974 conflict=6253 bad=4163 | RAM=806MB
+[23:01:48] EVAL[periodic] step=21000 n=3620 acc=93.29% bacc=93.25% f1=93.33% | star:88.5 galaxy:97.7 quasar:91.2 nebula:90.1 planet:98.7
+[23:02:17] step  21100 loss=0.3079 acc=96.1% lr=1.02e-04 419 img/s [decay] | star=20250 galaxy=21293 quasar=18361 nebula=2128 planet=8509 | ok=70541 dupImg=7974 conflict=6253 bad=4163 | RAM=806MB
+[23:02:46] step  21200 loss=0.3053 acc=96.0% lr=9.60e-05 420 img/s [decay] | star=20250 galaxy=21293 quasar=18361 nebula=2128 planet=8509 | ok=70541 dupImg=7974 conflict=6253 bad=4163 | RAM=806MB
+[23:03:14] step  21300 loss=0.3081 acc=96.0% lr=8.98e-05 420 img/s [decay] | star=20250 galaxy=21293 quasar=18361 nebula=2128 planet=8509 | ok=70541 dupImg=7974 conflict=6253 bad=4163 | RAM=806MB
+[23:03:43] step  21400 loss=0.3020 acc=96.4% lr=8.38e-05 420 img/s [decay] | star=20250 galaxy=21293 quasar=18361 nebula=2128 planet=8509 | ok=70541 dupImg=7974 conflict=6253 bad=4163 | RAM=806MB
+[23:04:12] step  21500 loss=0.3020 acc=96.1% lr=7.77e-05 420 img/s [decay] | star=20250 galaxy=21293 quasar=18361 nebula=2128 planet=8509 | ok=70541 dupImg=7974 conflict=6253 bad=4163 | RAM=806MB
+[23:04:41] step  21600 loss=0.3011 acc=96.5% lr=7.18e-05 420 img/s [decay] | star=20250 galaxy=21293 quasar=18361 nebula=2128 planet=8509 | ok=70541 dupImg=7974 conflict=6253 bad=4163 | RAM=806MB
+[23:05:10] step  21700 loss=0.3014 acc=96.4% lr=6.60e-05 420 img/s [decay] | star=20250 galaxy=21293 quasar=18361 nebula=2128 planet=8509 | ok=70541 dupImg=7974 conflict=6253 bad=4163 | RAM=806MB
+[23:05:39] step  21800 loss=0.3056 acc=96.1% lr=6.04e-05 420 img/s [decay] | star=20250 galaxy=21293 quasar=18361 nebula=2128 planet=8509 | ok=70541 dupImg=7974 conflict=6253 bad=4163 | RAM=806MB
+[23:06:10] step  21900 loss=0.3060 acc=96.1% lr=5.49e-05 420 img/s [decay] | star=20250 galaxy=21293 quasar=18361 nebula=2128 planet=8509 | ok=70541 dupImg=7974 conflict=6253 bad=4163 | RAM=806MB
+[23:06:43] step  22000 loss=0.2994 acc=96.6% lr=4.96e-05 420 img/s [decay] | star=20250 galaxy=21293 quasar=18361 nebula=2128 planet=8509 | ok=70541 dupImg=7974 conflict=6253 bad=4163 | RAM=806MB
+[23:06:47] EVAL[periodic] step=22000 n=3620 acc=93.45% bacc=93.53% f1=93.30% | star:88.7 galaxy:97.5 quasar:91.9 nebula:91.1 planet:98.5
+[23:07:20] step  22100 loss=0.3004 acc=96.3% lr=4.45e-05 420 img/s [decay] | star=20250 galaxy=21293 quasar=18361 nebula=2128 planet=8509 | ok=70541 dupImg=7974 conflict=6253 bad=4163 | RAM=806MB
+[23:07:54] step  22200 loss=0.2989 acc=96.5% lr=3.96e-05 419 img/s [decay] | star=20250 galaxy=21293 quasar=18361 nebula=2128 planet=8509 | ok=70541 dupImg=7974 conflict=6253 bad=4163 | RAM=806MB
+[23:08:27] step  22300 loss=0.3011 acc=96.3% lr=3.50e-05 419 img/s [decay] | star=20250 galaxy=21293 quasar=18361 nebula=2128 planet=8509 | ok=70541 dupImg=7974 conflict=6253 bad=4163 | RAM=806MB
+[23:09:00] step  22400 loss=0.3015 acc=96.4% lr=3.06e-05 419 img/s [decay] | star=20250 galaxy=21293 quasar=18361 nebula=2128 planet=8509 | ok=70541 dupImg=7974 conflict=6253 bad=4163 | RAM=806MB
+[23:09:31] step  22500 loss=0.3034 acc=96.2% lr=2.66e-05 419 img/s [decay] | star=20250 galaxy=21293 quasar=18361 nebula=2128 planet=8509 | ok=70541 dupImg=7974 conflict=6253 bad=4163 | RAM=806MB
+[23:10:00] step  22600 loss=0.2985 acc=96.4% lr=2.28e-05 419 img/s [decay] | star=20250 galaxy=21293 quasar=18361 nebula=2128 planet=8509 | ok=70541 dupImg=7974 conflict=6253 bad=4163 | RAM=806MB
+[23:10:30] step  22700 loss=0.2989 acc=96.5% lr=1.93e-05 419 img/s [decay] | star=20250 galaxy=21293 quasar=18361 nebula=2128 planet=8509 | ok=70541 dupImg=7974 conflict=6253 bad=4163 | RAM=806MB
+[23:10:59] step  22800 loss=0.2973 acc=96.4% lr=1.62e-05 419 img/s [decay] | star=20250 galaxy=21293 quasar=18361 nebula=2128 planet=8509 | ok=70541 dupImg=7974 conflict=6253 bad=4163 | RAM=806MB
+[23:11:28] step  22900 loss=0.2992 acc=96.3% lr=1.34e-05 419 img/s [decay] | star=20250 galaxy=21293 quasar=18361 nebula=2128 planet=8509 | ok=70541 dupImg=7974 conflict=6253 bad=4163 | RAM=806MB
+[23:11:57] step  23000 loss=0.3025 acc=96.3% lr=1.09e-05 419 img/s [decay] | star=20250 galaxy=21293 quasar=18361 nebula=2128 planet=8509 | ok=70541 dupImg=7974 conflict=6253 bad=4163 | RAM=806MB
+[23:12:01] EVAL[periodic] step=23000 n=3620 acc=93.51% bacc=93.78% f1=93.62% | star:89.0 galaxy:97.9 quasar:91.0 nebula:92.1 planet:98.9
+[23:12:31] step  23100 loss=0.3007 acc=96.4% lr=8.83e-06 419 img/s [decay] | star=20250 galaxy=21293 quasar=18361 nebula=2128 planet=8509 | ok=70541 dupImg=7974 conflict=6253 bad=4163 | RAM=806MB
+[23:13:00] step  23200 loss=0.2966 acc=96.6% lr=7.11e-06 419 img/s [decay] | star=20250 galaxy=21293 quasar=18361 nebula=2128 planet=8509 | ok=70541 dupImg=7974 conflict=6253 bad=4163 | RAM=806MB
+[23:13:31] step  23300 loss=0.2992 acc=96.4% lr=5.76e-06 419 img/s [decay] | star=20250 galaxy=21293 quasar=18361 nebula=2128 planet=8509 | ok=70541 dupImg=7974 conflict=6253 bad=4163 | RAM=806MB
+[23:14:01] step  23400 loss=0.2960 acc=96.6% lr=4.79e-06 419 img/s [decay] | star=20250 galaxy=21293 quasar=18361 nebula=2128 planet=8509 | ok=70541 dupImg=7974 conflict=6253 bad=4163 | RAM=806MB
+[23:14:31] step  23500 loss=0.2981 acc=96.5% lr=4.20e-06 419 img/s [decay] | star=20250 galaxy=21293 quasar=18361 nebula=2128 planet=8509 | ok=70541 dupImg=7974 conflict=6253 bad=4163 | RAM=806MB
+[23:15:00] step  23600 loss=0.2986 acc=96.5% lr=4.00e-06 419 img/s [decay] | star=20250 galaxy=21293 quasar=18361 nebula=2128 planet=8509 | ok=70541 dupImg=7974 conflict=6253 bad=4163 | RAM=806MB
+[23:15:00] weights saved -> /home/rsalas/Documentos/NASA_TRAINING/training/trained_net_stream.pth (evaluation follows)
+[23:15:00] final evaluation (EMA weights, 8-fold TTA)
+[23:15:27] FINAL new model : acc=93.95% (95% CI 93.13%-94.68%) bacc=93.95% f1=93.92% | curated-only acc=96.19% (n=761) | source-balanced recall=88.66% | no-TTA acc 93.67%
+[23:15:27] BASELINE (old)  : acc=29.48% bacc=22.42% f1=11.95% | curated-only acc=24.31% | source-balanced recall=38.88% on the same held-out streamed images
+[23:15:28] dataset summary: {"star": 20250, "galaxy": 21293, "quasar": 18361, "nebula": 2128, "planet": 8509} | groups: {"star/esa": 95, "star/nasa": 61, "star/sdss": 6031, "star/sdss_faint": 8027, "star/sdss_field": 6036, "galaxy/commons": 2514, "galaxy/decals": 11000, "galaxy/esa": 381, "galaxy/nasa": 364, "galaxy/sdss": 7034, "quasar/esa": 16, "quasar/nasa": 13, "quasar/sdss": 18332, "nebula/commons": 1794, "nebula/esa": 100, "nebula/nasa": 234, "planet/esa": 18, "planet/nasa": 8491}
+[23:15:28] done.

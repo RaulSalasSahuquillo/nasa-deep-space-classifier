@@ -23,7 +23,7 @@ SCRIPT_DIR = Path(__file__).resolve().parent           # /training/huggingface
 TRAINING_DIR = SCRIPT_DIR.parent                      # /training
 PROJECT_ROOT = TRAINING_DIR.parent                    # project root
 
-DEFAULT_WEIGHTS_PATH = TRAINING_DIR / "trained_net.pth"  # /training/trained_net.pth
+DEFAULT_WEIGHTS_PATH = TRAINING_DIR / "trained_net_stream.pth"  # /training/trained_net_stream.pth (1.2 Flash)
 README_PATH = SCRIPT_DIR / "README.md"                   # /training/huggingface/README.md
 LICENSE_PATH = SCRIPT_DIR / "LICENSE"                    # /training/huggingface/LICENSE
 ENV_PATH = PROJECT_ROOT / ".env"                         # .env
@@ -43,8 +43,8 @@ def parse_args():
     parser.add_argument(
         "--version",
         type=str,
-        default="v1.1.0",
-        help="Release version tag (e.g., v1.1.0)"
+        default="v1.2-flash",
+        help="Release version tag (e.g., v1.2-flash). Display name: AstroClass 1.2 Flash"
     )
     parser.add_argument(
         "--weights",
@@ -146,7 +146,7 @@ def main():
             api.create_tag(
                 repo_id=repo_id,
                 tag=version,
-                tag_message=f"Release {version}: Updated weights trained with Qwen local AI audit",
+                tag_message=f"Release {version}: Updated ResNet-34 weights",
                 exist_ok=True
             )
             print(f"      Tag '{version}' created successfully.")

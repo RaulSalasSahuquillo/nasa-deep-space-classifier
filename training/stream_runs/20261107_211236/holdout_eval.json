@@ -1,0 +1,405 @@
+{
+  "n": 4131,
+  "class_totals": {
+    "star": 1377,
+    "galaxy": 1048,
+    "quasar": 1004,
+    "nebula": 132,
+    "planet": 570
+  },
+  "results": {
+    "/home/rsalas/Documentos/NASA_TRAINING/training/trained_net.pth.backup": {
+      "n": 4131,
+      "accuracy_ci95": [
+        0.3524132387020755,
+        0.38179665219193126
+      ],
+      "curated_accuracy": 0.7505567928730512,
+      "curated_n": 898,
+      "source_balanced_recall": 0.48905052949286126,
+      "accuracy": 0.36698136044541274,
+      "balanced_accuracy": 0.458501438339556,
+      "macro_f1": 0.4080478980750358,
+      "per_class": {
+        "star": {
+          "support": 1377,
+          "recall": 0.01597676107480029,
+          "precision": 0.1476510067114094
+        },
+        "galaxy": {
+          "support": 1048,
+          "recall": 0.9055343511450382,
+          "precision": 0.2859294968363965
+        },
+        "quasar": {
+          "support": 1004,
+          "recall": 0.02091633466135458,
+          "precision": 0.19811320754716982
+        },
+        "nebula": {
+          "support": 132,
+          "recall": 0.5606060606060606,
+          "precision": 0.8409090909090909
+        },
+        "planet": {
+          "support": 570,
+          "recall": 0.7894736842105263,
+          "precision": 0.9594882729211087
+        }
+      },
+      "per_group_acc": {
+        "galaxy/commons": {
+          "acc": 0.7710843373493976,
+          "n": 166
+        },
+        "galaxy/decals": {
+          "acc": 0.9933333333333333,
+          "n": 300
+        },
+        "galaxy/nasa": {
+          "acc": 0.68,
+          "n": 25
+        },
+        "galaxy/sdss": {
+          "acc": 0.9084380610412927,
+          "n": 557
+        },
+        "nebula/commons": {
+          "acc": 0.5517241379310345,
+          "n": 116
+        },
+        "nebula/nasa": {
+          "acc": 0.625,
+          "n": 16
+        },
+        "planet/nasa": {
+          "acc": 0.7894736842105263,
+          "n": 570
+        },
+        "quasar/nasa": {
+          "acc": 1.0,
+          "n": 1
+        },
+        "quasar/sdss": {
+          "acc": 0.019940179461615155,
+          "n": 1003
+        },
+        "star/nasa": {
+          "acc": 1.0,
+          "n": 4
+        },
+        "star/sdss": {
+          "acc": 0.015184381778741865,
+          "n": 461
+        },
+        "star/sdss_faint": {
+          "acc": 0.010362694300518135,
+          "n": 579
+        },
+        "star/sdss_field": {
+          "acc": 0.015015015015015015,
+          "n": 333
+        }
+      },
+      "confusion": [
+        [
+          22,
+          1331,
+          17,
+          2,
+          5
+        ],
+        [
+          37,
+          949,
+          49,
+          4,
+          9
+        ],
+        [
+          3,
+          980,
+          21,
+          0,
+          0
+        ],
+        [
+          24,
+          27,
+          2,
+          74,
+          5
+        ],
+        [
+          63,
+          32,
+          17,
+          8,
+          450
+        ]
+      ]
+    },
+    "/home/rsalas/Documentos/NASA_TRAINING/training/trained_net.pth": {
+      "n": 4131,
+      "accuracy_ci95": [
+        0.24279484919585748,
+        0.269399281771578
+      ],
+      "curated_accuracy": 0.22271714922049,
+      "curated_n": 898,
+      "source_balanced_recall": 0.3661645956868225,
+      "accuracy": 0.25587024933430164,
+      "balanced_accuracy": 0.22290654637982882,
+      "macro_f1": 0.11018848575386905,
+      "per_class": {
+        "star": {
+          "support": 1377,
+          "recall": 0.0,
+          "precision": 0.0
+        },
+        "galaxy": {
+          "support": 1048,
+          "recall": 0.9933206106870229,
+          "precision": 0.26699153629135675
+        },
+        "quasar": {
+          "support": 1004,
+          "recall": 0.0,
+          "precision": 0.0
+        },
+        "nebula": {
+          "support": 132,
+          "recall": 0.12121212121212122,
+          "precision": 0.14035087719298245
+        },
+        "planet": {
+          "support": 570,
+          "recall": 0.0,
+          "precision": 0.0
+        }
+      },
+      "per_group_acc": {
+        "galaxy/commons": {
+          "acc": 0.9698795180722891,
+          "n": 166
+        },
+        "galaxy/decals": {
+          "acc": 1.0,
+          "n": 300
+        },
+        "galaxy/nasa": {
+          "acc": 0.92,
+          "n": 25
+        },
+        "galaxy/sdss": {
+          "acc": 1.0,
+          "n": 557
+        },
+        "nebula/commons": {
+          "acc": 0.13793103448275862,
+          "n": 116
+        },
+        "nebula/nasa": {
+          "acc": 0.0,
+          "n": 16
+        },
+        "planet/nasa": {
+          "acc": 0.0,
+          "n": 570
+        },
+        "quasar/nasa": {
+          "acc": 0.0,
+          "n": 1
+        },
+        "quasar/sdss": {
+          "acc": 0.0,
+          "n": 1003
+        },
+        "star/nasa": {
+          "acc": 0.0,
+          "n": 4
+        },
+        "star/sdss": {
+          "acc": 0.0,
+          "n": 461
+        },
+        "star/sdss_faint": {
+          "acc": 0.0,
+          "n": 579
+        },
+        "star/sdss_field": {
+          "acc": 0.0,
+          "n": 333
+        }
+      },
+      "confusion": [
+        [
+          0,
+          1376,
+          0,
+          1,
+          0
+        ],
+        [
+          4,
+          1041,
+          0,
+          3,
+          0
+        ],
+        [
+          0,
+          1004,
+          0,
+          0,
+          0
+        ],
+        [
+          6,
+          110,
+          0,
+          16,
+          0
+        ],
+        [
+          108,
+          368,
+          0,
+          94,
+          0
+        ]
+      ]
+    },
+    "/home/rsalas/Documentos/NASA_TRAINING/training/trained_net_stream.pth": {
+      "n": 4131,
+      "accuracy_ci95": [
+        0.9259280358636954,
+        0.941094294568503
+      ],
+      "curated_accuracy": 0.9699331848552338,
+      "curated_n": 898,
+      "source_balanced_recall": 0.9371492645045033,
+      "accuracy": 0.9339143064633261,
+      "balanced_accuracy": 0.9378904452547314,
+      "macro_f1": 0.9384548592688835,
+      "per_class": {
+        "star": {
+          "support": 1377,
+          "recall": 0.906318082788671,
+          "precision": 0.9454545454545454
+        },
+        "galaxy": {
+          "support": 1048,
+          "recall": 0.9723282442748091,
+          "precision": 0.9496738117427772
+        },
+        "quasar": {
+          "support": 1004,
+          "recall": 0.899402390438247,
+          "precision": 0.8691049085659288
+        },
+        "nebula": {
+          "support": 132,
+          "recall": 0.9166666666666666,
+          "precision": 0.937984496124031
+        },
+        "planet": {
+          "support": 570,
+          "recall": 0.9947368421052631,
+          "precision": 0.9947368421052631
+        }
+      },
+      "per_group_acc": {
+        "galaxy/commons": {
+          "acc": 0.9518072289156626,
+          "n": 166
+        },
+        "galaxy/decals": {
+          "acc": 1.0,
+          "n": 300
+        },
+        "galaxy/nasa": {
+          "acc": 0.92,
+          "n": 25
+        },
+        "galaxy/sdss": {
+          "acc": 0.9658886894075404,
+          "n": 557
+        },
+        "nebula/commons": {
+          "acc": 0.9224137931034483,
+          "n": 116
+        },
+        "nebula/nasa": {
+          "acc": 0.875,
+          "n": 16
+        },
+        "planet/nasa": {
+          "acc": 0.9947368421052631,
+          "n": 570
+        },
+        "quasar/nasa": {
+          "acc": 0.0,
+          "n": 1
+        },
+        "quasar/sdss": {
+          "acc": 0.9002991026919243,
+          "n": 1003
+        },
+        "star/nasa": {
+          "acc": 0.5,
+          "n": 4
+        },
+        "star/sdss": {
+          "acc": 0.9956616052060737,
+          "n": 461
+        },
+        "star/sdss_faint": {
+          "acc": 0.7858376511226253,
+          "n": 579
+        },
+        "star/sdss_field": {
+          "acc": 0.996996996996997,
+          "n": 333
+        }
+      },
+      "confusion": [
+        [
+          1248,
+          5,
+          122,
+          2,
+          0
+        ],
+        [
+          6,
+          1019,
+          14,
+          6,
+          3
+        ],
+        [
+          64,
+          37,
+          903,
+          0,
+          0
+        ],
+        [
+          2,
+          9,
+          0,
+          121,
+          0
+        ],
+        [
+          0,
+          3,
+          0,
+          0,
+          567
+        ]
+      ]
+    }
+  }
+}
